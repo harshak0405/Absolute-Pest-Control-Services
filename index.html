@@ -1,560 +1,234 @@
 <!DOCTYPE html>
-<html lang="en" class="dark-theme">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sri Maruthi Pest Control Service — Elite, discreet, and uncompromising pest management architecture for luxury residences and premier commercial spaces in Bengaluru.">
-    <title>Sri Maruthi Pest Control Service | Elite Bengaluru Protection</title>
+    <title>Absolute Pest Control Services | Professional Pest Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0b0f19;
+            --bg-card: #131c2e;
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --accent-glow: rgba(16, 185, 129, 0.15);
+        }
 
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--bg-deep); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
-    <!-- FONT AWESOME -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        /* Header */
+        header { position: fixed; top: 0; width: 100%; background: rgba(11, 15, 25, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 1000; padding: 18px 0; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.35rem; font-weight: 800; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .logo span { color: var(--primary); }
+        .btn-whatsapp { background: var(--primary); color: #fff; padding: 10px 22px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; box-shadow: 0 4px 20px var(--accent-glow); }
+        .btn-whatsapp:hover { background: var(--primary-hover); transform: translateY(-2px); }
 
-    <!-- STYLESHEET -->
-    <link rel="stylesheet" href="style.css">
+        /* Hero Section */
+        .hero { padding: 140px 0 60px; text-align: center; position: relative; }
+        .hero-badge { display: inline-block; background: rgba(16, 185, 129, 0.1); border: 1px solid var(--primary); color: var(--primary); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 16px; background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--text-muted); font-size: 1.15rem; max-width: 620px; margin: 0 auto 30px; }
+
+        /* Slider Section */
+        .slider-section { max-width: 1200px; margin: 0 auto 80px; padding: 0 20px; }
+        .slider-container { position: relative; width: 100%; height: 480px; border-radius: 24px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease-in-out; display: flex; align-items: flex-end; padding: 40px; }
+        .slide.active { opacity: 1; }
+        .slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+        .slide-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,15,25,0) 20%, rgba(11,15,25,0.9) 100%); z-index: 2; }
+        .slide-content { position: relative; z-index: 3; max-width: 600px; }
+        .slide-content h3 { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+        .slide-content p { color: #cbd5e1; font-size: 1rem; }
+
+        /* Slider Controls */
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 4; background: rgba(11, 15, 25, 0.7); border: 1px solid var(--border); color: #fff; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+        .slider-btn:hover { background: var(--primary); }
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
+
+        /* Services Grid */
+        .services { padding: 60px 0 100px; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+        .section-title p { color: var(--text-muted); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; }
+        .card:hover { transform: translateY(-6px); border-color: var(--primary); }
+        .card-img-wrapper { position: relative; height: 180px; overflow: hidden; }
+        .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .card:hover .card-img-wrapper img { transform: scale(1.08); }
+        .card-body { padding: 24px; }
+        .card-body h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+        .card-body p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 18px; }
+        .card-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; }
+
+        /* Footer */
+        footer { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+    </style>
 </head>
-<body id="top">
+<body>
 
-    <!-- ANNOUNCEMENT / UTILITY BAR -->
-    <aside class="enterprise-bar" aria-label="Emergency Dispatch">
-        <div class="container enterprise-bar-inner">
-            <div class="enterprise-dispatch">
-                <span class="live-pulse"></span>
-                <span>Bengaluru Command Center: <strong>24/7 Rapid Response Active</strong></span>
-            </div>
-            <div class="enterprise-meta-links">
-                <a href="tel:+919663017155"><i class="fa-solid fa-phone-volume"></i> +91 96630 17155</a>
-                <span class="divider">/</span>
-                <a href="mailto:Srimaruthipestcontrolservice12@gmail.com">Secure Dispatch Mail</a>
-            </div>
-        </div>
-    </aside>
-
-    <!-- IMMERSIVE FLOATING HEADER -->
-    <header class="elite-header" id="eliteHeader">
-        <div class="container nav-glass-wrapper">
-            <a href="#top" class="elite-brand">
-                <div class="brand-crest">
-                    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-                </div>
-                <div class="brand-text-group">
-                    <span class="brand-title">SRI MARUTHI</span>
-                    <span class="brand-subtitle">EXECUTIVE PEST ARCHITECTURE</span>
-                </div>
-            </a>
-
-            <nav class="elite-nav" aria-label="Primary Navigation">
-                <a href="#about" class="nav-link">The Standard</a>
-                <a href="#services" class="nav-link">Protocols</a>
-                <a href="#google-profile" class="nav-link">Verification</a>
-                <a href="#gallery" class="nav-link">Portfolio</a>
-                <a href="#contact" class="nav-link">Secure Booking</a>
-            </nav>
-
-            <div class="header-action-group">
-                <a href="tel:+919663017155" class="elite-pill-btn">
-                    <span>Direct Concierge</span>
-                    <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>
-                </a>
-                <button class="menu-trigger" id="menuTrigger" aria-label="Toggle Navigation Panel" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo"><i class="fa-solid fa-shield-halved" style="color:var(--primary);"></i> <span>Absolute</span> Pest Control</a>
+            <a href="https://wa.me/919663017155" target="_blank" class="btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Book Inspection</a>
         </div>
     </header>
 
-    <!-- FULLSCREEN CINEMATIC NAVIGATION OVERLAY -->
-    <div class="fullscreen-menu" id="fullscreenMenu">
-        <div class="fullscreen-menu-inner">
-            <div class="menu-col">
-                <h4>Navigation Directory</h4>
-                <ul>
-                    <li><a href="#top" class="menu-link">01. Home Sanctuary</a></li>
-                    <li><a href="#about" class="menu-link">02. The Enterprise Standard</a></li>
-                    <li><a href="#services" class="menu-link">03. Specialized Protocols</a></li>
-                    <li><a href="#google-profile" class="menu-link">04. Google Accreditation</a></li>
-                    <li><a href="#gallery" class="menu-link">05. Execution Gallery</a></li>
-                    <li><a href="#videos" class="menu-link">06. Cinematic Proof</a></li>
-                    <li><a href="#contact" class="menu-link">07. Connect with Command</a></li>
-                </ul>
-            </div>
-            <div class="menu-col brand-col-spotlight">
-                <h4>Emergency Response</h4>
-                <p>Experiencing a critical infestation or hazardous bee swarm in Bengaluru? Our tier-1 response unit is deployed instantly.</p>
-                <a href="tel:+919663017155" class="mega-phone-link">+91 96630 17155</a>
-                <div class="social-cluster">
-                    <a href="https://wa.me/919663017155" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp Dispatch</a>
+    <section class="hero">
+        <div class="hero-badge">Hebbal, Bengaluru • Premium Grade</div>
+        <h1>Absolute Pest Eradication Protocols</h1>
+        <p>Scientific, odorless, and eco-friendly pest defense solutions for residential villas and enterprise infrastructure.</p>
+    </section>
+
+    <!-- Interactive Hero Slider -->
+    <div class="slider-section">
+        <div class="slider-container">
+            <div class="slide active">
+                <img src="hero.jpeg" alt="Absolute Pest Defense">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h3>Advanced Pest Elimination</h3>
+                    <p>Certified treatments tailored for residential and commercial spaces across Bengaluru.</p>
                 </div>
             </div>
+            <div class="slide">
+                <img src="Termite.jpeg" alt="Termite Management">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h3>Subterranean Termite Barrier</h3>
+                    <p>Long-term soil barrier defense protecting your valuable timber and structural assets.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="about.jpeg" alt="Professional Equipment">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h3>Multi-Stage Protection Shield</h3>
+                    <p>Precision eradication protocols providing complete peace of mind.</p>
+                </div>
+            </div>
+
+            <button class="slider-btn prev-btn" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="slider-btn next-btn" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
     </div>
 
-    <main>
-
-        <!-- CINEMATIC HERO SECTION -->
-        <section class="cinematic-hero" id="home">
-            <div class="hero-media-backdrop">
-                <img src="hero.jpeg" alt="Sri Maruthi professional pest control service team in action" loading="eager">
-                <div class="cinematic-vignette"></div>
-            </div>
-            
-            <div class="container hero-content-grid">
-                <div class="hero-text-block">
-                    <div class="prestige-badge">
-                        <i class="fa-solid fa-gem" aria-hidden="true"></i>
-                        <span>BENGALURU'S PREMIER BIO-SECURITY SERVICE</span>
-                    </div>
-                    <h1>Uncompromising Defense. <span>Absolute Sanctuary.</span></h1>
-                    <p class="hero-lead">Delivering military-grade, precision pest elimination protocols engineered specifically for elite residential estates, luxury hospitality, and high-value corporate portfolios.</p>
-
-                    <div class="hero-cta-row">
-                        <a href="#contact" class="lux-btn primary-glow">
-                            <span>Request Inspection</span>
-                            <div class="btn-icon-box"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
-                        </a>
-                        <a href="https://wa.me/919663017155?text=Hello,%20I%20require%20an%20urgent%20consultation%20with%20Sri%20Maruthi%20Pest%20Control." target="_blank" rel="noopener" class="lux-btn glass-outline">
-                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-                            <span>Secure WhatsApp Channel</span>
-                        </a>
-                    </div>
-
-                    <div class="hero-metrics-bar">
-                        <div class="metric-item">
-                            <strong>4.9 / 5.0</strong>
-                            <span>Verified Excellence</span>
-                        </div>
-                        <div class="metric-divider"></div>
-                        <div class="metric-item">
-                            <strong>100%</strong>
-                            <span>Discreet Operations</span>
-                        </div>
-                        <div class="metric-divider"></div>
-                        <div class="metric-item">
-                            <strong>24 / 7</strong>
-                            <span>Bengaluru Coverage</span>
-                        </div>
-                    </div>
+    <!-- 8 Bento Grid Services -->
+    <section class="services">
+        <div class="section-title">
+            <h2>Our Specialized Defense Protocols</h2>
+            <p>Targeted solutions designed specifically for urban pest challenges</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="card-img-wrapper"><img src="cockroach.jpeg" alt="Cockroach Control"></div>
+                <div class="card-body">
+                    <h3>Cockroach Eradication</h3>
+                    <p>Non-toxic gel baiting engineered for complete kitchen colony destruction.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-        </section>
 
-        <!-- TICKER STRIP -->
-        <div class="ticker-strip">
-            <div class="ticker-track">
-                <span><i class="fa-solid fa-circle-check"></i> Termite Defense Architecture</span>
-                <span><i class="fa-solid fa-circle-check"></i> Humane Bee Relocation</span>
-                <span><i class="fa-solid fa-circle-check"></i> Odorless Gel Baiting</span>
-                <span><i class="fa-solid fa-circle-check"></i> Corporate Compliance Certified</span>
-                <span><i class="fa-solid fa-circle-check"></i> Termite Defense Architecture</span>
-                <span><i class="fa-solid fa-circle-check"></i> Humane Bee Relocation</span>
+            <div class="card">
+                <div class="card-img-wrapper"><img src="Termite.jpeg" alt="Termite Treatment"></div>
+                <div class="card-body">
+                    <h3>Termite Armor</h3>
+                    <p>Pre and post-construction chemical barriers guarding structural integrity.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-wrapper"><img src="BedBug.jpg" alt="Bed Bug Control"></div>
+                <div class="card-body">
+                    <h3>Bed Bug Shield</h3>
+                    <p>Thorough multi-stage spray and heat treatments for complete sleep peace.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-wrapper"><img src="Rodent.jpg" alt="Rodent Control"></div>
+                <div class="card-body">
+                    <h3>Rodent Control</h3>
+                    <p>Strategic baiting, smart tracking, and entry-point structural sealing.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-wrapper"><img src="Musquito.jpeg" alt="Mosquito Control"></div>
+                <div class="card-body">
+                    <h3>Mosquito Shield</h3>
+                    <p>Targeted outdoor thermal fogging and indoor anti-larval treatment.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-wrapper"><img src="Honeybee.jpg" alt="Honeybee Extraction"></div>
+                <div class="card-body">
+                    <h3>Bee Hive Relocation</h3>
+                    <p>Eco-friendly, safe removal and relocation of dangerous bee hives.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-wrapper"><img src="Ant.jpg" alt="Ant Management"></div>
+                <div class="card-body">
+                    <h3>Ant Defense</h3>
+                    <p>Barrier treatments stopping black and red ant trails at entry points.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-wrapper"><img src="Genarel.jpg" alt="General Disinfestation"></div>
+                <div class="card-body">
+                    <h3>General Disinfestation</h3>
+                    <p>All-round general spray protection covering routine crawling pests.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- ABOUT LUXURY SECTION -->
-        <section class="luxury-about section-padding" id="about">
-            <div class="container">
-                <div class="split-about-grid">
-                    <div class="about-visual-canvas">
-                        <div class="canvas-frame">
-                            <img src="about.jpeg" alt="Sri Maruthi professional pest control inspection and treatment execution" loading="lazy">
-                        </div>
-                        <div class="floating-trust-badge">
-                            <div class="ftb-icon"><i class="fa-solid fa-shield-heart"></i></div>
-                            <div class="ftb-text">
-                                <strong>Certified Specialists</strong>
-                                <span>Advanced Pest Management</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="about-narrative">
-                        <div class="section-tag">
-                            <span></span> THE SRI MARUTHI PHILOSOPHY
-                        </div>
-                        <h2>Redefining Pest Control Through <span>Scientific Precision.</span></h2>
-                        <p class="lead-paragraph">Pests are more than a nuisance—they compromise architectural integrity, brand reputation, and environmental health.</p>
-                        <p class="body-paragraph">Operating across Bengaluru, Sri Maruthi Pest Control Service utilizes cutting-edge treatment science, localized habitat mapping, and rigorous safety protocols to clear threats at the biological root.</p>
-
-                        <div class="feature-matrix">
-                            <div class="matrix-box">
-                                <div class="matrix-num">01</div>
-                                <div>
-                                    <h4>Precision Targeting</h4>
-                                    <p>Zero collateral damage to interiors with localized micro-applications.</p>
-                                </div>
-                            </div>
-                            <div class="matrix-box">
-                                <div class="matrix-num">02</div>
-                                <div>
-                                    <h4>Eco-Conscious Agents</h4>
-                                    <p>Family, pet, and environmentally safe formulations that meet global standards.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SERVICES BENTO GRID (STRICTLY MATCHED IMAGE TO INFO) -->
-        <section class="services-bento-section section-padding" id="services">
-            <div class="container">
-                <div class="section-heading-centered">
-                    <div class="section-tag">
-                        <span></span> SPECIALIZED PROTOCOLS <span></span>
-                    </div>
-                    <h2>Engineered Solutions for <span>Every Threat Matrix.</span></h2>
-                    <p>Select a specialized treatment protocol tailored precisely to your property class.</p>
-                </div>
-
-                <div class="bento-grid">
-                    <!-- Protocol 01: Cockroach Control -->
-                    <article class="bento-card">
-                        <div class="bento-image">
-                            <img src="cockroach.jpeg" alt="Professional Cockroach Control Treatment" loading="lazy">
-                            <div class="bento-badge">Protocol A-1</div>
-                        </div>
-                        <div class="bento-content">
-                            <div class="bento-icon"><i class="fa-solid fa-bug"></i></div>
-                            <h3>Cockroach Eradication</h3>
-                            <p>Advanced odorless gel matrixing that completely destroys deep hidden breeding colonies in kitchens and offices.</p>
-                            <a href="#contact" class="bento-link">Deploy Protocol <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- Protocol 02: Termite Protection -->
-                    <article class="bento-card">
-                        <div class="bento-image">
-                            <img src="Termite.jpeg" alt="Structural Termite Protection and Wood Treatment" loading="lazy">
-                            <div class="bento-badge">Structural Guard</div>
-                        </div>
-                        <div class="bento-content">
-                            <div class="bento-icon"><i class="fa-solid fa-house"></i></div>
-                            <h3>Termite Armor</h3>
-                            <p>Pre and post-construction chemical soil barriers protecting structural timber, doors, and assets from destruction.</p>
-                            <a href="#contact" class="bento-link">Deploy Protocol <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- Protocol 03: Bed Bug Treatment -->
-                    <article class="bento-card">
-                        <div class="bento-image">
-                            <img src="Bedbug.jpeg" alt="Targeted Bed Bug Control Treatment" loading="lazy">
-                            <div class="bento-badge">Sanctuary Care</div>
-                        </div>
-                        <div class="bento-content">
-                            <div class="bento-icon"><i class="fa-solid fa-bed"></i></div>
-                            <h3>Bed Bug Elimination</h3>
-                            <p>Multi-stage residual treatment targeted directly at mattresses, beds, and hotel upholstery.</p>
-                            <a href="#contact" class="bento-link">Deploy Protocol <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- Protocol 04: Rodent Management -->
-                    <article class="bento-card">
-                        <div class="bento-image">
-                            <img src="rodent.jpeg" alt="Professional Rodent and Rat Control Management" loading="lazy">
-                            <div class="bento-badge">Perimeter Shield</div>
-                        </div>
-                        <div class="bento-content">
-                            <div class="bento-icon"><i class="fa-solid fa-paw"></i></div>
-                            <h3>Rodent Management</h3>
-                            <p>Integrated baiting, tracking, and structural entry-point sealing for complete property security against rats and mice.</p>
-                            <a href="#contact" class="bento-link">Deploy Protocol <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- Protocol 05: Mosquito Control -->
-                    <article class="bento-card">
-                        <div class="bento-image">
-                            <img src="Musquito.jpeg" alt="Mosquito Control Fogging and Larvicidal Treatment" loading="lazy">
-                            <div class="bento-badge">Atmosphere Safe</div>
-                        </div>
-                        <div class="bento-content">
-                            <div class="bento-icon"><i class="fa-solid fa-mosquito"></i></div>
-                            <h3>Mosquito Suppression</h3>
-                            <p>Thermal fogging and larvicidal treatments to safeguard open lawns, balconies, and commercial spaces.</p>
-                            <a href="#contact" class="bento-link">Deploy Protocol <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- Protocol 06: Honey Bee Removal -->
-                    <article class="bento-card highlight-card">
-                        <div class="bento-image">
-                            <img src="Honeybee.jpg" alt="Safe Honey Bee Hive Removal and Relocation" loading="lazy">
-                            <div class="bento-badge eco-badge"><i class="fa-solid fa-leaf"></i> Eco Relocation</div>
-                        </div>
-                        <div class="bento-content">
-                            <div class="bento-icon"><i class="fa-solid fa-shield-virus"></i></div>
-                            <h3>Honey Bee Extraction</h3>
-                            <p>Humane, chemical-free hive removal and safe transfer to natural apiaries without harming the colony.</p>
-                            <div class="card-action-flex">
-                                <a href="https://wa.me/919663017155?text=Hi,%20I%20require%20urgent%20Honey%20Bee%20Removal." class="lux-btn-small" target="_blank" rel="noopener">
-                                    Instant Dispatch <i class="fa-solid fa-bolt"></i>
-                                </a>
-                                <a href="tel:+919663017155" class="quick-call-pill"><i class="fa-solid fa-phone"></i></a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Protocol 07: Ant Control -->
-                    <article class="bento-card">
-                        <div class="bento-image">
-                            <img src="Ant.jpg" alt="Professional Ant Colony Control and Gel Treatment" loading="lazy">
-                            <div class="bento-badge">Colony Zero</div>
-                        </div>
-                        <div class="bento-content">
-                            <div class="bento-icon"><i class="fa-solid fa-spider"></i></div>
-                            <h3>Ant Colony Eradication</h3>
-                            <p>Targeted queen-elimination baiting systems designed to wipe out entire subterranean ant networks.</p>
-                            <div class="card-action-flex">
-                                <a href="https://wa.me/919663017155?text=Hi,%20I%20require%20Ant%20Control%20service." class="lux-btn-small" target="_blank" rel="noopener">
-                                    Deploy Protocol <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                                <a href="tel:+919663017155" class="quick-call-pill"><i class="fa-solid fa-phone"></i></a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Protocol 08: General Pest Control -->
-                    <article class="bento-card">
-                        <div class="bento-image">
-                            <img src="hero.jpeg" alt="General Pest Control Comprehensive Management" loading="lazy">
-                            <div class="bento-badge">Omni Defense</div>
-                        </div>
-                        <div class="bento-content">
-                            <div class="bento-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                            <h3>General Multi-Pest Care</h3>
-                            <p>Comprehensive seasonal barrier treatments ensuring total multi-pest peace of mind year-round.</p>
-                            <a href="#contact" class="bento-link">Deploy Protocol <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- GOOGLE VERIFICATION MODULE -->
-        <section class="verification-section section-padding" id="google-profile">
-            <div class="container">
-                <div class="section-heading-centered">
-                    <div class="section-tag">
-                        <span></span> PUBLIC ACCREDITATION <span></span>
-                    </div>
-                    <h2>Verified Reputation. <span>Unrivaled Trust.</span></h2>
-                    <p>Live metrics pulled directly from our verified Google Business Profile in Bengaluru.</p>
-                </div>
-
-                <div class="glass-google-card">
-                    <div class="ggc-header">
-                        <div>
-                            <span class="ggc-status-live"><i class="fa-solid fa-circle"></i> Google Verified Entity</span>
-                            <h3>Sri Maruthi Pest Control Service</h3>
-                            <div class="ggc-rating-row">
-                                <span class="score">4.9</span>
-                                <div class="stars">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <span class="reviews-count">(150+ Verified Reviews)</span>
-                            </div>
-                            <p class="location-tag"><i class="fa-solid fa-location-dot"></i> Serving all micro-markets across Bengaluru, Karnataka</p>
-                        </div>
-                        <div class="ggc-badge-emblem">
-                            <i class="fa-brands fa-google"></i>
-                        </div>
-                    </div>
-
-                    <div class="ggc-action-bar">
-                        <a href="tel:+919663017155" class="ggc-btn">
-                            <i class="fa-solid fa-phone"></i> Direct Call
-                        </a>
-                        <a href="https://maps.google.com" target="_blank" rel="noopener" class="ggc-btn">
-                            <i class="fa-solid fa-diamond-turn-right"></i> GPS Navigation
-                        </a>
-                        <a href="https://wa.me/919663017155" target="_blank" rel="noopener" class="ggc-btn whatsapp-highlight">
-                            <i class="fa-brands fa-whatsapp"></i> Live Chat
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- VISUAL EXECUTION PORTFOLIO GALLERY -->
-        <section class="portfolio-gallery-section section-padding" id="gallery">
-            <div class="container">
-                <div class="section-heading-centered">
-                    <div class="section-tag">
-                        <span></span> FIELD OPERATIONS PORTFOLIO <span></span>
-                    </div>
-                    <h2>Precision in Action. <span>Elite Standards.</span></h2>
-                    <p>A visual showcase of our technicians performing specialized pest interventions.</p>
-                </div>
-
-                <div class="portfolio-grid">
-                    <div class="p-item p-span-2">
-                        <img src="hero.jpeg" alt="Sri Maruthi professional execution team" loading="lazy">
-                        <div class="p-overlay">
-                            <span>High-Grade Chemical Fogging & Safety Protocols</span>
-                        </div>
-                    </div>
-                    <div class="p-item">
-                        <img src="about.jpeg" alt="Pest control inspection process" loading="lazy">
-                        <div class="p-overlay">
-                            <span>Subterranean Termite Scanning</span>
-                        </div>
-                    </div>
-                    <div class="p-item">
-                        <img src="Termite.jpeg" alt="Termite protection execution" loading="lazy">
-                        <div class="p-overlay">
-                            <span>Commercial Asset Protection</span>
-                        </div>
-                    </div>
-                    <div class="p-item">
-                        <img src="Honeybee.jpg" alt="Safe bee relocation service" loading="lazy">
-                        <div class="p-overlay">
-                            <span>Residential Perimeter Defense</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CINEMATIC VIDEO SHOWCASE -->
-        <section class="cinematic-video-section section-padding" id="videos">
-            <div class="container">
-                <div class="section-heading-centered">
-                    <div class="section-tag">
-                        <span></span> MOTION ARCHIVE <span></span>
-                    </div>
-                    <h2>Watch Our Protocols <span>Executed Live.</span></h2>
-                    <p>Transparent documentation of our field methodologies and expert equipment usage.</p>
-                </div>
-
-                <div class="video-showcase-grid">
-                    <div class="video-vault-card">
-                        <div class="vault-player-wrap">
-                            <video controls playsinline preload="metadata">
-                                <source src="video.mp4" type="video/mp4">
-                                Your browser does not support HTML5 video.
-                            </video>
-                        </div>
-                        <div class="vault-info">
-                            <h4>Residential Treatment Protocol</h4>
-                            <p>Complete step-by-step breakdown of an elite home pest elimination session.</p>
-                        </div>
-                    </div>
-
-                    <div class="video-vault-card">
-                        <div class="vault-player-wrap">
-                            <video controls playsinline preload="metadata">
-                                <source src="video2.mp4" type="video/mp4">
-                                Your browser does not support HTML5 video.
-                            </video>
-                        </div>
-                        <div class="vault-info">
-                            <h4>Commercial Asset Protection</h4>
-                            <p>Large-scale commercial facility sanitization and defense deployment.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECURE DISPATCH CONTACT SECTION -->
-        <section class="secure-contact-section section-padding" id="contact">
-            <div class="container">
-                <div class="contact-glass-box">
-                    <div class="contact-info-side">
-                        <div class="section-tag">
-                            <span></span> DIRECT CONNECTION
-                        </div>
-                        <h2>Initiate Secure <span>Dispatch.</span></h2>
-                        <p>Speak directly with our senior technicians or command desk for immediate scheduling or emergency response.</p>
-
-                        <div class="contact-channels">
-                            <a href="tel:+919663017155" class="channel-card">
-                                <div class="c-icon"><i class="fa-solid fa-phone-volume"></i></div>
-                                <div>
-                                    <span>Emergency Voice Line</span>
-                                    <strong>+91 96630 17155</strong>
-                                </div>
-                            </a>
-
-                            <a href="mailto:Srimaruthipestcontrolservice12@gmail.com" class="channel-card">
-                                <div class="c-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
-                                <div>
-                                    <span>Electronic Mail</span>
-                                    <strong>Srimaruthipestcontrolservice12@gmail.com</strong>
-                                </div>
-                            </a>
-
-                            <div class="channel-card">
-                                <div class="c-icon"><i class="fa-solid fa-location-crosshairs"></i></div>
-                                <div>
-                                    <span>Command Center</span>
-                                    <strong>Bengaluru, Karnataka</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-form-side">
-                        <h3>Schedule an Inspection</h3>
-                        <p>Provide your contact details for a callback within 15 minutes.</p>
-                        
-                        <form class="elite-form" onsubmit="event.preventDefault(); alert('Transmission received. Our concierge will contact you shortly.');">
-                            <div class="form-group">
-                                <input type="text" placeholder="Full Name" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="tel" placeholder="Phone Number" required>
-                            </div>
-                            <div class="form-group">
-                                <select required>
-                                    <option value="" disabled selected>Select Protocol Required</option>
-                                    <option value="cockroach">Cockroach Control</option>
-                                    <option value="termite">Termite Protection</option>
-                                    <option value="bedbug">Bed Bug Treatment</option>
-                                    <option value="bee">Honey Bee Removal</option>
-                                    <option value="general">General Pest Control</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="lux-btn primary-glow full-width">
-                                <span>Transmit Request</span>
-                                <i class="fa-solid fa-paper-plane"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ELITE FOOTER -->
-    <footer class="elite-footer">
-        <div class="container footer-inner">
-            <div class="footer-brand-col">
-                <div class="brand-crest">
-                    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-                </div>
-                <div>
-                    <strong>SRI MARUTHI</strong>
-                    <span>PEST CONTROL SERVICE</span>
-                </div>
-                <p>&copy; 2026 Sri Maruthi Pest Control Service. All rights reserved. Engineered for elite spatial defense in Bengaluru.</p>
-            </div>
-            <div class="footer-back-top">
-                <a href="#top" class="back-top-btn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></a>
-            </div>
-        </div>
+    <footer>
+        <p>&copy; 2026 Absolute Pest Control Services • Hebbal, Bengaluru. All Rights Reserved.</p>
     </footer>
 
-    <!-- SCRIPT -->
-    <script src="script.js"></script>
+    <!-- Slider JavaScript -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) slide.classList.add('active');
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Auto-play slider every 4 seconds
+        setInterval(nextSlide, 4000);
+    </script>
 </body>
 </html>
