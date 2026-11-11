@@ -1,198 +1,824 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Absolute Pest Control Services | Hebbal, Bengaluru</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <meta name="description"
+        content="Professional pest control services in Hebbal, Bengaluru. Cockroach, termite, bed bug, rodent, mosquito and general pest control. Contact Absolute Pest Control today.">
+
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <header>
-        <div class="nav-wrap">
-            <a href="#" class="brand"><i class="fa-solid fa-shield-halved"></i> Absolute Pest Control</a>
-            <div class="nav-actions">
-                <a href="tel:+919663017155" class="phone-link"><i class="fa-solid fa-phone"></i> +91 96630 17155</a>
-                <a href="https://wa.me/919663017155" target="_blank" class="glow-btn"><i class="fa-brands fa-whatsapp"></i> WhatsApp Direct</a>
+<!-- NAVIGATION -->
+<header class="header" id="top">
+    <nav class="navbar container">
+
+        <a href="#home" class="brand">
+            <span class="brand-icon">A</span>
+            <span class="brand-text">
+                <strong>ABSOLUTE</strong>
+                <small>PEST CONTROL SERVICES</small>
+            </span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle"
+            aria-label="Open navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#services">Our Services</a>
+            <a href="#quote">Get a Quote</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+            <a class="nav-phone" href="tel:+919663017155">
+                <span>☎</span> +91 96630 17155
+            </a>
+
+            <a class="btn btn-primary whatsapp-link"
+                href="https://wa.me/919663017155"
+                target="_blank" rel="noopener">
+                WhatsApp Us
+            </a>
+        </div>
+
+    </nav>
+</header>
+
+
+<main>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+
+    <div class="container hero-grid">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                <span class="status-dot"></span>
+                PROFESSIONAL PEST CONTROL SERVICES
             </div>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="hero-badge"><i class="fa-solid fa-location-dot"></i> Hebbal, Bengaluru • Verified & Licensed</div>
-        <h1>Enterprise-Grade Pest Eradication Protocols</h1>
-        <p>Scientific, odorless, and eco-friendly defense solutions engineered for luxury residential villas, tech parks, and commercial infrastructure.</p>
-        <div class="hero-cta">
-            <a href="https://wa.me/919663017155" target="_blank" class="glow-btn"><i class="fa-solid fa-calendar-check"></i> Book Expert Inspection</a>
-            <a href="#calculator" class="outline-btn"><i class="fa-solid fa-calculator"></i> Calculate Estimate</a>
-        </div>
-    </section>
+            <h1>
+                A Cleaner Space.<br>
+                A <span>Safer Environment.</span>
+            </h1>
 
-    <div class="stats-bar">
-        <div class="stat-box">
-            <h3>100%</h3>
-            <p>Odorless & Safe</p>
+            <p>
+                Protect your home and workplace with professional pest
+                control solutions. We help keep unwanted pests away
+                with reliable, effective and customer-focused services.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#quote" class="btn btn-primary">
+                    Get Free Consultation <span>→</span>
+                </a>
+
+                <a href="tel:+919663017155" class="btn btn-outline">
+                    Call Now
+                </a>
+            </div>
+
+            <div class="hero-points">
+                <div>
+                    <span class="check">✓</span>
+                    Residential Solutions
+                </div>
+                <div>
+                    <span class="check">✓</span>
+                    Commercial Solutions
+                </div>
+                <div>
+                    <span class="check">✓</span>
+                    Multiple Pest Treatments
+                </div>
+            </div>
+
         </div>
-        <div class="stat-box">
-            <h3>Hebbal</h3>
-            <p>Primary Hub</p>
+
+        <div class="hero-visual">
+
+            <div class="hero-media" id="heroMedia">
+
+                <div class="hero-slide active" data-slide="0">
+                    <img src="hero.jpeg"
+                        alt="Absolute Pest Control promotional banner"
+                        class="contain-media">
+                </div>
+
+                <div class="hero-slide" data-slide="1">
+                    <img src="about.jpeg"
+                        alt="About Absolute Pest Control"
+                        class="contain-media">
+                </div>
+
+                <div class="hero-slide" data-slide="2">
+                    <img src="Terminate.jpeg"
+                        alt="Termite control service banner"
+                        class="contain-media">
+                </div>
+
+                <div class="hero-slide video-slide" data-slide="3">
+                    <video src="video.mp4"
+                        class="contain-media"
+                        muted loop playsinline preload="metadata">
+                    </video>
+                </div>
+
+                <div class="hero-slide video-slide" data-slide="4">
+                    <video src="video2.mp4"
+                        class="contain-media"
+                        muted loop playsinline preload="metadata">
+                    </video>
+                </div>
+
+                <button class="slider-arrow prev"
+                    id="prevSlide" aria-label="Previous slide">‹</button>
+
+                <button class="slider-arrow next"
+                    id="nextSlide" aria-label="Next slide">›</button>
+
+            </div>
+
+            <div class="slider-controls">
+                <div class="slider-dots" id="sliderDots"></div>
+                <span class="slider-counter" id="slideCounter">01 / 05</span>
+            </div>
+
+            <div class="hero-floating-card">
+                <span class="floating-icon">✓</span>
+                <div>
+                    <strong>Professional Care</strong>
+                    <small>Solutions for every space</small>
+                </div>
+            </div>
+
         </div>
-        <div class="stat-box">
-            <h3>24/7</h3>
-            <p>Emergency Ready</p>
-        </div>
-        <div class="stat-box">
-            <h3>Govt.</h3>
-            <p>Approved Formulas</p>
-        </div>
+
     </div>
+</section>
 
-    <div class="slider-wrap">
-        <div class="stage">
-            <div class="slide-item active"><img src="hero.jpeg" alt="Hero Banner"></div>
-            <div class="slide-item"><img src="Terminate.jpeg" alt="Termite Treatment"></div>
-            <div class="slide-item"><img src="about.jpeg" alt="About Infrastructure"></div>
+
+<!-- TRUST BANNER -->
+<section class="trust-section">
+    <div class="container trust-grid">
+
+        <div class="trust-item">
+            <span class="trust-icon">⌂</span>
+            <div>
+                <strong>Residential</strong>
+                <small>Home Pest Solutions</small>
+            </div>
         </div>
+
+        <div class="trust-item">
+            <span class="trust-icon">▦</span>
+            <div>
+                <strong>Commercial</strong>
+                <small>Business Pest Solutions</small>
+            </div>
+        </div>
+
+        <div class="trust-item">
+            <span class="trust-icon">✓</span>
+            <div>
+                <strong>Professional</strong>
+                <small>Focused Service</small>
+            </div>
+        </div>
+
+        <div class="trust-item">
+            <span class="trust-icon">⌖</span>
+            <div>
+                <strong>Hebbal, Bengaluru</strong>
+                <small>Local Service Location</small>
+            </div>
+        </div>
+
     </div>
+</section>
 
-    <section class="services-section">
-        <h2 class="section-title">Our Specialized Defense Protocols</h2>
-        <p class="section-subtitle">Targeted solutions designed specially for urban pest challenges in Bengaluru.</p>
-        <div class="grid-bento">
-            
-            <div class="bento-card">
-                <div class="img-box"><img src="cockroach.jpeg" alt="Cockroach Eradication"></div>
-                <div class="card-content">
-                    <div>
-                        <h3>Cockroach Eradication</h3>
-                        <p>German gel baiting matrix engineered for complete colony destruction without shifting kitchen inventory.</p>
-                    </div>
-                    <a href="https://wa.me/919663017155?text=Hi,%20I%20want%20to%20book%20Cockroach%20Eradication%20service." target="_blank" class="card-btn">Deploy Defense →</a>
+
+<!-- ABOUT SECTION -->
+<section class="section about-section" id="about">
+
+    <div class="container about-grid">
+
+        <div class="about-image">
+            <img src="about.jpeg"
+                alt="Absolute Pest Control Services"
+                class="contain-media">
+
+            <div class="about-image-label">
+                <span>ABSOLUTE</span>
+                Pest Control Services
+            </div>
+        </div>
+
+        <div class="about-content">
+
+            <span class="section-tag">ABOUT OUR COMPANY</span>
+
+            <h2>
+                Your Trusted Partner for a
+                <span>Pest-Free Environment.</span>
+            </h2>
+
+            <p>
+                At Absolute Pest Control Services, we understand how
+                unwanted pests can affect your comfort, hygiene and
+                peace of mind.
+            </p>
+
+            <p>
+                Our goal is to provide suitable pest management
+                solutions for residential and commercial properties,
+                with a focus on service quality and customer satisfaction.
+            </p>
+
+            <div class="about-features">
+
+                <div>
+                    <span>✓</span>
+                    Tailored Pest Solutions
                 </div>
+
+                <div>
+                    <span>✓</span>
+                    Residential & Commercial
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Customer-Focused Service
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Multiple Pest Treatments
+                </div>
+
             </div>
 
-            <div class="bento-card">
-                <div class="img-box"><img src="Terminate.jpeg" alt="Termite Armor"></div>
-                <div class="card-content">
-                    <div>
-                        <h3>Termite Armor</h3>
-                        <p>Pre and post-construction chemical barrier drilling guarding structural timber and integrity.</p>
-                    </div>
-                    <a href="https://wa.me/919663017155?text=Hi,%20I%20want%20to%20book%20Termite%20Armor%20service." target="_blank" class="card-btn">Deploy Defense →</a>
+            <a href="#services" class="btn btn-primary">
+                Explore Our Services →
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- SERVICES -->
+<section class="section services-section" id="services">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-tag">WHAT WE OFFER</span>
+
+            <h2>Our Professional <span>Pest Control Services</span></h2>
+
+            <p>
+                Comprehensive pest management solutions designed
+                for homes, offices and commercial spaces.
+            </p>
+
+        </div>
+
+        <div class="services-grid">
+
+            <article class="service-card">
+
+                <div class="service-image">
+                    <img src="cockroach.jpeg"
+                        data-fallback="cockroach.jpg"
+                        alt="Cockroach eradication"
+                        class="contain-media">
                 </div>
+
+                <div class="service-info">
+                    <span class="service-number">01</span>
+                    <h3>Cockroach Eradication</h3>
+                    <p>Targeted cockroach management for kitchens,
+                        homes and commercial spaces.</p>
+                    <a href="#quote" class="service-link"
+                        data-service="Cockroach Eradication">
+                        Enquire Now →
+                    </a>
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+                    <img src="Terminate.jpeg"
+                        data-fallback="Termite.jpeg"
+                        alt="Termite armor"
+                        class="contain-media">
+                </div>
+
+                <div class="service-info">
+                    <span class="service-number">02</span>
+                    <h3>Termite Armor</h3>
+                    <p>Termite management solutions to help protect
+                        furniture and property structures.</p>
+                    <a href="#quote" class="service-link"
+                        data-service="Termite Armor">
+                        Enquire Now →
+                    </a>
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+                    <img src="BedBug.jpg"
+                        data-fallback="Bedbug.jpeg"
+                        alt="Bed bug shield"
+                        class="contain-media">
+                </div>
+
+                <div class="service-info">
+                    <span class="service-number">03</span>
+                    <h3>Bed Bug Shield</h3>
+                    <p>Specialised bed bug treatment for sleeping
+                        areas, mattresses and furniture.</p>
+                    <a href="#quote" class="service-link"
+                        data-service="Bed Bug Shield">
+                        Enquire Now →
+                    </a>
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+                    <img src="Rodent.jpg"
+                        data-fallback="rodent.jpeg"
+                        alt="Rodent control"
+                        class="contain-media">
+                </div>
+
+                <div class="service-info">
+                    <span class="service-number">04</span>
+                    <h3>Rodent Control</h3>
+                    <p>Rodent management solutions for homes,
+                        warehouses and commercial properties.</p>
+                    <a href="#quote" class="service-link"
+                        data-service="Rodent Control">
+                        Enquire Now →
+                    </a>
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+                    <img src="Musquito.jpeg"
+                        alt="Mosquito shield"
+                        class="contain-media">
+                </div>
+
+                <div class="service-info">
+                    <span class="service-number">05</span>
+                    <h3>Mosquito Shield</h3>
+                    <p>Mosquito management solutions for indoor
+                        and outdoor environments.</p>
+                    <a href="#quote" class="service-link"
+                        data-service="Mosquito Shield">
+                        Enquire Now →
+                    </a>
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+                    <img src="Honeybee.jpeg"
+                        data-fallback="Honeybee.jpg"
+                        alt="Bee hive relocation"
+                        class="contain-media">
+                </div>
+
+                <div class="service-info">
+                    <span class="service-number">06</span>
+                    <h3>Bee Hive Relocation</h3>
+                    <p>Responsible bee hive relocation enquiries
+                        handled with safety considerations.</p>
+                    <a href="#quote" class="service-link"
+                        data-service="Bee Hive Relocation">
+                        Enquire Now →
+                    </a>
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+                    <img src="Ant.jpg"
+                        alt="Ant defense"
+                        class="contain-media">
+                </div>
+
+                <div class="service-info">
+                    <span class="service-number">07</span>
+                    <h3>Ant Defense</h3>
+                    <p>Ant control solutions for kitchens,
+                        residential and commercial areas.</p>
+                    <a href="#quote" class="service-link"
+                        data-service="Ant Defense">
+                        Enquire Now →
+                    </a>
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+                    <img src="Genarel.jpg"
+                        alt="General disinfestation"
+                        class="contain-media">
+                </div>
+
+                <div class="service-info">
+                    <span class="service-number">08</span>
+                    <h3>General Disinfestation</h3>
+                    <p>General pest management solutions for
+                        different property requirements.</p>
+                    <a href="#quote" class="service-link"
+                        data-service="General Disinfestation">
+                        Enquire Now →
+                    </a>
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+                    <img src="fly.jpg"
+                        alt="Fly control"
+                        class="contain-media">
+                </div>
+
+                <div class="service-info">
+                    <span class="service-number">09</span>
+                    <h3>Fly Control</h3>
+                    <p>Fly management solutions for residential
+                        and commercial environments.</p>
+                    <a href="#quote" class="service-link"
+                        data-service="Fly Control">
+                        Enquire Now →
+                    </a>
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- WHY CHOOSE US -->
+<section class="section why-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="section-tag">WHY ABSOLUTE</span>
+            <h2>Why Choose <span>Our Services?</span></h2>
+            <p>We focus on delivering practical solutions and
+                a professional customer experience.</p>
+        </div>
+
+        <div class="why-grid">
+
+            <div class="why-card">
+                <div class="why-icon">✦</div>
+                <h3>Professional Approach</h3>
+                <p>Service recommendations based on your
+                    property's pest concerns.</p>
             </div>
 
-            <div class="bento-card">
-                <div class="img-box"><img src="BedBug.jpg" alt="Bed Bug Shield"></div>
-                <div class="card-content">
-                    <div>
-                        <h3>Bed Bug Shield</h3>
-                        <p>Thorough multi-stage dual spray and thermal treatments for complete mattress and upholstery safety.</p>
-                    </div>
-                    <a href="https://wa.me/919663017155?text=Hi,%20I%20want%20to%20book%20Bed%20Bug%20Shield%20service." target="_blank" class="card-btn">Deploy Defense →</a>
-                </div>
+            <div class="why-card">
+                <div class="why-icon">⌂</div>
+                <h3>Multiple Solutions</h3>
+                <p>A range of pest control services under
+                    one roof.</p>
             </div>
 
-            <div class="bento-card">
-                <div class="img-box"><img src="Rodent.jpg" alt="Rodent Control"></div>
-                <div class="card-content">
-                    <div>
-                        <h3>Rodent Control</h3>
-                        <p>Strategic baiting stations, smart trapping grids, and entry-point structural sealing.</p>
-                    </div>
-                    <a href="https://wa.me/919663017155?text=Hi,%20I%20want%20to%20book%20Rodent%20Control%20service." target="_blank" class="card-btn">Deploy Defense →</a>
-                </div>
+            <div class="why-card">
+                <div class="why-icon">♧</div>
+                <h3>Property Focused</h3>
+                <p>Solutions for residential and commercial
+                    requirements.</p>
             </div>
 
-            <div class="bento-card">
-                <div class="img-box"><img src="Musquito.jpeg" alt="Mosquito Shield"></div>
-                <div class="card-content">
-                    <div>
-                        <h3>Mosquito Shield</h3>
-                        <p>Targeted outdoor thermal fogging and anti-larval water body treatments.</p>
-                    </div>
-                    <a href="https://wa.me/919663017155?text=Hi,%20I%20want%20to%20book%20Mosquito%20Shield%20service." target="_blank" class="card-btn">Deploy Defense →</a>
-                </div>
+            <div class="why-card">
+                <div class="why-icon">♡</div>
+                <h3>Customer Care</h3>
+                <p>Clear communication and attention
+                    to customer requirements.</p>
             </div>
 
-            <div class="bento-card">
-                <div class="img-box"><img src="Honeybee.jpg" alt="Bee Hive Relocation"></div>
-                <div class="card-content">
-                    <div>
-                        <h3>Bee Hive Relocation</h3>
-                        <p>Safe, humane, and eco-friendly live hive extraction without environmental harm.</p>
-                    </div>
-                    <a href="https://wa.me/919663017155?text=Hi,%20I%20want%20to%20book%20Bee%20Hive%20Relocation%20service." target="_blank" class="card-btn">Deploy Defense →</a>
-                </div>
-            </div>
+        </div>
 
-            <div class="bento-card">
-                <div class="img-box"><img src="Ant.jpg" alt="Ant Defense"></div>
-                <div class="card-content">
-                    <div>
-                        <h3>Ant Defense</h3>
-                        <p>Perimeter residual spray treatments stopping black and red ant trails instantly at the source.</p>
-                    </div>
-                    <a href="https://wa.me/919663017155?text=Hi,%20I%20want%20to%20book%20Ant%20Defense%20service." target="_blank" class="card-btn">Deploy Defense →</a>
-                </div>
-            </div>
+    </div>
+</section>
 
-            <div class="bento-card">
-                <div class="img-box"><img src="Genarel.jpg" alt="General Disinfestation"></div>
-                <div class="card-content">
-                    <div>
-                        <h3>General Disinfestation</h3>
-                        <p>All-round comprehensive spray protection covering routine crawling pests and sanitization.</p>
-                    </div>
-                    <a href="https://wa.me/919663017155?text=Hi,%20I%20want%20to%20book%20General%20Disinfestation%20service." target="_blank" class="card-btn">Deploy Defense →</a>
+
+<!-- QUOTE CALCULATOR -->
+<section class="section quote-section" id="quote">
+
+    <div class="container quote-grid">
+
+        <div class="quote-content">
+
+            <span class="section-tag">GET YOUR QUOTATION</span>
+
+            <h2>
+                Let's Make Your Space
+                <span>Pest-Free.</span>
+            </h2>
+
+            <p>
+                Tell us about your pest problem. Submit the details
+                and our team can discuss a suitable treatment
+                and quotation with you directly on WhatsApp.
+            </p>
+
+            <div class="quote-contact">
+                <span class="quote-phone-icon">☎</span>
+                <div>
+                    <small>Need immediate assistance?</small>
+                    <a href="tel:+919663017155">+91 96630 17155</a>
                 </div>
             </div>
 
         </div>
-    </section>
 
-    <section id="calculator" class="calc-section">
-        <div class="calc-card">
-            <h2>Instant WhatsApp Quote Assistant</h2>
-            <p>Select your property type to get an instant tailored estimate via WhatsApp.</p>
-            <div class="calc-form">
+
+        <div class="quote-card">
+
+            <div class="quote-card-header">
+                <div>
+                    <span class="section-tag">QUICK ENQUIRY</span>
+                    <h3>Calculate Your Quote</h3>
+                </div>
+                <span class="quote-icon">↗</span>
+            </div>
+
+            <form id="quoteForm">
+
                 <div class="form-group">
-                    <label>Select Property Type:</label>
-                    <select id="propType">
-                        <option value="1BHK Apartment">1 BHK Apartment (₹999)</option>
-                        <option value="2BHK Apartment">2 BHK Apartment (₹1,299)</option>
-                        <option value="3BHK Apartment">3 BHK Apartment (₹1,599)</option>
-                        <option value="Independent Villa / Office">Independent Villa / Commercial Space (₹2,499+)</option>
+                    <label for="customerName">Your Name *</label>
+                    <input type="text" id="customerName"
+                        placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="propertyType">Property Type *</label>
+                        <select id="propertyType" required>
+                            <option value="">Select property</option>
+                            <option>Apartment</option>
+                            <option>Independent House</option>
+                            <option>Office</option>
+                            <option>Restaurant</option>
+                            <option>Warehouse</option>
+                            <option>Commercial Building</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pestType">Pest Problem *</label>
+                        <select id="pestType" required>
+                            <option value="">Select pest</option>
+                            <option>Cockroaches</option>
+                            <option>Termites</option>
+                            <option>Bed Bugs</option>
+                            <option>Rodents</option>
+                            <option>Mosquitoes</option>
+                            <option>Bee Hive</option>
+                            <option>Ants</option>
+                            <option>General Pest Control</option>
+                            <option>Flies</option>
+                            <option>Multiple Pests</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="areaSize">Property Area (sq. ft.)</label>
+                        <input type="number" id="areaSize"
+                            min="1" placeholder="e.g. 1200">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Your Location *</label>
+                        <input type="text" id="location"
+                            placeholder="e.g. Hebbal" required>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="urgency">When Do You Need Service?</label>
+                    <select id="urgency">
+                        <option>As soon as possible</option>
+                        <option>Within 2-3 days</option>
+                        <option>Within a week</option>
+                        <option>Just exploring options</option>
                     </select>
                 </div>
+
                 <div class="form-group">
-                    <label>Primary Pest Concern:</label>
-                    <select id="pestType">
-                        <option value="Cockroaches & General Pests">Cockroaches & General Pests</option>
-                        <option value="Termites">Termites (Wood Borers)</option>
-                        <option value="Bed Bugs">Bed Bugs</option>
-                        <option value="Rodents">Rodents / Rats</option>
-                        <option value="Mosquitoes">Mosquitoes</option>
-                    </select>
+                    <label for="additionalDetails">Additional Details</label>
+                    <textarea id="additionalDetails"
+                        rows="3"
+                        placeholder="Describe your pest problem (optional)"></textarea>
                 </div>
-                <button id="calcBtn" class="glow-btn" style="width: 100%; justify-content: center; margin-top: 10px;">
-                    <i class="fa-brands fa-whatsapp"></i> Send Estimate Request via WhatsApp
+
+                <button type="submit" class="btn btn-primary quote-submit">
+                    Get My WhatsApp Quote <span>→</span>
                 </button>
+
+                <p class="form-note">
+                    <span>🔒</span>
+                    Your enquiry will open directly in WhatsApp.
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container cta-inner">
+
+        <div>
+            <span class="section-tag">NEED PROFESSIONAL HELP?</span>
+            <h2>Don't Let Pests Take Over Your Space.</h2>
+            <p>Speak with Absolute Pest Control Services today.</p>
+        </div>
+
+        <div class="cta-actions">
+            <a href="tel:+919663017155" class="btn btn-white">
+                ☎ Call Now
+            </a>
+
+            <a href="https://wa.me/919663017155"
+                target="_blank" rel="noopener"
+                class="btn btn-cta-outline whatsapp-link">
+                WhatsApp Us →
+            </a>
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+
+    <div class="container footer-grid">
+
+        <div class="footer-about">
+
+            <a href="#home" class="brand footer-brand">
+                <span class="brand-icon">A</span>
+                <span class="brand-text">
+                    <strong>ABSOLUTE</strong>
+                    <small>PEST CONTROL SERVICES</small>
+                </span>
+            </a>
+
+            <p>
+                Professional pest management solutions for
+                residential and commercial properties.
+                Your comfort and peace of mind matter.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#services">Our Services</a>
+            <a href="#quote">Get a Quote</a>
+        </div>
+
+        <div class="footer-links">
+            <h3>Our Services</h3>
+            <a href="#services">Cockroach Control</a>
+            <a href="#services">Termite Control</a>
+            <a href="#services">Bed Bug Control</a>
+            <a href="#services">Rodent Control</a>
+            <a href="#services">General Pest Control</a>
+        </div>
+
+        <div class="footer-contact">
+            <h3>Contact Us</h3>
+
+            <div class="contact-item">
+                <span>⌖</span>
+                <p>Hebbal, Bengaluru,<br>
+                    Karnataka, India</p>
             </div>
-        </div>
-    </section>
 
-    <footer>
-        <div class="footer-content">
-            <h3>Absolute Pest Control Services</h3>
-            <p><i class="fa-solid fa-location-dot"></i> Hebbal, Bengaluru, Karnataka</p>
-            <p><i class="fa-solid fa-phone"></i> +91 96630 17155</p>
-            <p class="copyright">&copy; 2026 Absolute Pest Control Services. All Rights Reserved.</p>
-        </div>
-    </footer>
+            <div class="contact-item">
+                <span>☎</span>
+                <a href="tel:+919663017155">
+                    +91 96630 17155
+                </a>
+            </div>
 
-    <script src="script.js"></script>
+            <div class="contact-item">
+                <span>◉</span>
+                <a href="https://wa.me/919663017155"
+                    target="_blank" rel="noopener">
+                    Chat on WhatsApp
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+            <p>© <span id="currentYear"></span> Absolute Pest Control Services. All Rights Reserved.</p>
+            <a href="#top">Back to Top ↑</a>
+        </div>
+    </div>
+
+</footer>
+
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/919663017155"
+    class="floating-whatsapp whatsapp-link"
+    target="_blank" rel="noopener"
+    aria-label="Chat with us on WhatsApp">
+
+    <span>✆</span>
+</a>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
