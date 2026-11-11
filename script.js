@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Automated Hero Image Slider Logic
     let idx = 0;
     const slides = document.querySelectorAll('.slide-item');
     
