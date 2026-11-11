@@ -1,18 +1,14 @@
 /* =========================================================
-   Absolute Pest Control Services - script.js
+   Absolute Pest Control Services - Advanced UI/UX script.js
    ========================================================= */
 
 (function () {
   "use strict";
 
-  /* ---------------------------------------------------------
-     CONFIG - edit these values easily
-     --------------------------------------------------------- */
-  var WHATSAPP_NUMBER = "919663017155"; // country code + number, no "+" or spaces
+  var WHATSAPP_NUMBER = "919663017155";
   var BUSINESS_NAME = "Absolute Pest Control Services";
 
-  // Indicative starting prices in INR (edit to match your real pricing).
-  // Base price per service for a 1 BHK; multiplied by the property factor below.
+  // Base starting prices in INR for 1 BHK
   var SERVICE_BASE = {
     "Cockroach Eradication": 1200,
     "Termite Armor": 2500,
@@ -34,59 +30,44 @@
     "Restaurant / Warehouse": 2.4
   };
 
-  /* ---------------------------------------------------------
-     Helpers
-     --------------------------------------------------------- */
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function $$(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
 
-  /* ---------------------------------------------------------
-     Image fallback: tries alternate file names if the first 404s
-     (data-fallback="Termite.jpeg|Termite.jpg")
-     --------------------------------------------------------- */
-  $$("img[data-fallback]").forEach(function (img) {
-    var queue = img.getAttribute("data-fallback").split("|").map(function (s) { return s.trim(); }).filter(Boolean);
-    img.addEventListener("error", function onError() {
-      if (queue.length) {
-        img.src = queue.shift();
-      } else {
-        img.removeEventListener("error", onError);
-      }
-    });
-  });
-
-  /* ---------------------------------------------------------
-     Navbar: scroll shadow + mobile menu
-     --------------------------------------------------------- */
+  // ---------- Sticky Navbar Shadow on Scroll ----------
   var navbar = $("#navbar");
   var menuToggle = $("#menuToggle");
   var navLinks = $("#navLinks");
 
   function onScroll() {
-    navbar.classList.toggle("scrolled", window.scrollY > 8);
+    if (window.scrollY > 12) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  // ---------- Mobile Menu Toggle ----------
   function closeMenu() {
     navLinks.classList.remove("open");
     menuToggle.classList.remove("open");
     menuToggle.setAttribute("aria-expanded", "false");
   }
 
-  menuToggle.addEventListener("click", function () {
-    var open = navLinks.classList.toggle("open");
-    menuToggle.classList.toggle("open", open);
-    menuToggle.setAttribute("aria-expanded", String(open));
-  });
-  $$("a", navLinks).forEach(function (a) { a.addEventListener("click", closeMenu); });
-  document.addEventListener("click", function (e) {
-    if (!navbar.contains(e.target)) closeMenu();
-  });
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", function () {
+      var open = navLinks.classList.toggle("open");
+      menuToggle.classList.toggle("open", open);
+      menuToggle.setAttribute("aria-expanded", String(open));
+    });
+    $$("a", navLinks).forEach(function (a) { a.addEventListener("click", closeMenu); });
+    document.addEventListener("click", function (e) {
+      if (!navbar.contains(e.target)) closeMenu();
+    });
+  }
 
-  /* ---------------------------------------------------------
-     Reveal on scroll
-     --------------------------------------------------------- */
+  // ---------- Intersection Observer Scroll Reveal ----------
   var revealEls = $$(".reveal");
   if ("IntersectionObserver" in window) {
     var revealObs = new IntersectionObserver(function (entries) {
@@ -96,19 +77,17 @@
           revealObs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     revealEls.forEach(function (el) { revealObs.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add("in"); });
   }
 
-  /* ---------------------------------------------------------
-     Animated counters
-     --------------------------------------------------------- */
+  // ---------- Animated Counters ----------
   var counters = $$("[data-count]");
   function animateCount(el) {
     var target = parseInt(el.getAttribute("data-count"), 10) || 0;
-    var duration = 1600;
+    var duration = 1800;
     var start = null;
     function step(ts) {
       if (!start) start = ts;
@@ -120,7 +99,8 @@
     }
     requestAnimationFrame(step);
   }
-  if ("IntersectionObserver" in window) {
+
+  if ("IntersectionObserver" in window && counters.length > 0) {
     var countObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -128,117 +108,76 @@
           countObs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.4 });
     counters.forEach(function (c) { countObs.observe(c); });
-  } else {
-    counters.forEach(function (c) { c.textContent = c.getAttribute("data-count"); });
   }
 
-  /* ---------------------------------------------------------
-     Showcase slider (images + videos)
-     --------------------------------------------------------- */
+  // ---------- Showcase Slider (Images & Videos) ----------
   var slider = $("#slider");
-  var slides = $$(".slide", slider);
-  var dotsWrap = $("#dots");
-  var current = 0;
-  var timer = null;
-  var IMAGE_DELAY = 4500;
-  var VIDEO_DELAY = 9000;
+  if (slider) {
+    var slides = $$(".slide", slider);
+    var dotsWrap = $("#dots");
+    var current = 0;
+    var timer = null;
+    var IMAGE_DELAY = 5000;
+    var VIDEO_DELAY = 10000;
 
-  slides.forEach(function (_, i) {
-    var dot = document.createElement("button");
-    dot.className = "dot" + (i === 0 ? " active" : "");
-    dot.setAttribute("role", "tab");
-    dot.setAttribute("aria-label", "Go to slide " + (i + 1));
-    dot.addEventListener("click", function () { goTo(i, true); });
-    dotsWrap.appendChild(dot);
-  });
-  var dots = $$(".dot", dotsWrap);
+    slides.forEach(function (_, i) {
+      var dot = document.createElement("button");
+      dot.className = "dot" + (i === 0 ? " active" : "");
+      dot.setAttribute("role", "tab");
+      dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+      dot.addEventListener("click", function () { goTo(i); });
+      dotsWrap.appendChild(dot);
+    });
+    var dots = $$(".dot", dotsWrap);
 
-  function playVideo(slide) {
-    var v = $("video", slide);
-    if (!v) return;
-    v.muted = true;
-    v.loop = true;
-    v.currentTime = 0;
-    var p = v.play();
-    if (p && typeof p.catch === "function") p.catch(function () { /* autoplay blocked - ignore */ });
-  }
+    function playVideo(slide) {
+      var v = $("video", slide);
+      if (!v) return;
+      v.muted = true;
+      v.loop = true;
+      v.currentTime = 0;
+      var p = v.play();
+      if (p && typeof p.catch === "function") p.catch(function () {});
+    }
 
-  function pauseVideo(slide) {
-    var v = $("video", slide);
-    if (v) v.pause();
-  }
+    function pauseVideo(slide) {
+      var v = $("video", slide);
+      if (v) v.pause();
+    }
 
-  function goTo(index, userAction) {
-    pauseVideo(slides[current]);
-    slides[current].classList.remove("active");
-    dots[current].classList.remove("active");
+    function goTo(index) {
+      pauseVideo(slides[current]);
+      slides[current].classList.remove("active");
+      if (dots[current]) dots[current].classList.remove("active");
 
-    current = (index + slides.length) % slides.length;
+      current = (index + slides.length) % slides.length;
 
-    slides[current].classList.add("active");
-    dots[current].classList.add("active");
-    playVideo(slides[current]);
+      slides[current].classList.add("active");
+      if (dots[current]) dots[current].classList.add("active");
+      playVideo(slides[current]);
 
-    // Preload neighbouring video for smoother transitions
-    var next = slides[(current + 1) % slides.length];
-    var nv = $("video", next);
-    if (nv && nv.preload !== "auto") nv.preload = "auto";
+      schedule();
+    }
 
-    schedule();
-    if (userAction) { /* timer is restarted by schedule() */ }
-  }
+    function schedule() {
+      clearTimeout(timer);
+      var hasVideo = !!$("video", slides[current]);
+      timer = setTimeout(function () { goTo(current + 1); }, hasVideo ? VIDEO_DELAY : IMAGE_DELAY);
+    }
 
-  function schedule() {
-    clearTimeout(timer);
-    var hasVideo = !!$("video", slides[current]);
-    timer = setTimeout(function () { goTo(current + 1); }, hasVideo ? VIDEO_DELAY : IMAGE_DELAY);
-  }
+    var prevBtn = $("#prevBtn");
+    var nextBtn = $("#nextBtn");
+    if (prevBtn) prevBtn.addEventListener("click", function () { goTo(current - 1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { goTo(current + 1); });
 
-  $("#prevBtn").addEventListener("click", function () { goTo(current - 1, true); });
-  $("#nextBtn").addEventListener("click", function () { goTo(current + 1, true); });
-
-  slider.addEventListener("mouseenter", function () { clearTimeout(timer); });
-  slider.addEventListener("mouseleave", schedule);
-
-  // Keyboard support when slider is focused/hovered area
-  document.addEventListener("keydown", function (e) {
-    var rect = slider.getBoundingClientRect();
-    var inView = rect.top < window.innerHeight && rect.bottom > 0;
-    if (!inView) return;
-    if (e.key === "ArrowLeft") goTo(current - 1, true);
-    if (e.key === "ArrowRight") goTo(current + 1, true);
-  });
-
-  // Touch swipe
-  var touchStartX = 0;
-  slider.addEventListener("touchstart", function (e) { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
-  slider.addEventListener("touchend", function (e) {
-    var dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 45) goTo(current + (dx < 0 ? 1 : -1), true);
-  }, { passive: true });
-
-  // Pause when tab hidden / slider off-screen
-  document.addEventListener("visibilitychange", function () {
-    if (document.hidden) { clearTimeout(timer); pauseVideo(slides[current]); }
-    else { playVideo(slides[current]); schedule(); }
-  });
-
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) { playVideo(slides[current]); schedule(); }
-        else { clearTimeout(timer); pauseVideo(slides[current]); }
-      });
-    }, { threshold: 0.25 }).observe(slider);
-  } else {
+    slider.addEventListener("mouseenter", function () { clearTimeout(timer); });
+    slider.addEventListener("mouseleave", schedule);
     schedule();
   }
 
-  /* ---------------------------------------------------------
-     Service cards -> preselect service in quote form
-     --------------------------------------------------------- */
+  // ---------- Interactive WhatsApp Quote Calculator & Form ----------
   var form = $("#quoteForm");
   var serviceSelect = $("#service");
   var propertySelect = $("#property");
@@ -248,26 +187,29 @@
   var estimateValue = $("#estimateValue");
   var errorBox = $("#formError");
 
+  // Clicking "Get Quote" on service cards automatically fills form & scrolls down
   $$(".card-link").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      serviceSelect.value = btn.getAttribute("data-service");
-      updateEstimate();
-      var quote = $("#quote");
-      quote.scrollIntoView({ behavior: "smooth", block: "start" });
-      setTimeout(function () { nameInput.focus({ preventScroll: true }); }, 600);
+      var serviceName = btn.getAttribute("data-service");
+      if (serviceSelect) {
+        serviceSelect.value = serviceName;
+        updateEstimate();
+      }
+      var quoteSection = $("#quote");
+      if (quoteSection) {
+        quoteSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(function () {
+          if (nameInput) nameInput.focus({ preventScroll: true });
+        }, 500);
+      }
     });
   });
 
-  /* ---------------------------------------------------------
-     Quote calculator
-     --------------------------------------------------------- */
   function roundTo(n, step) { return Math.round(n / step) * step; }
-
-  function formatINR(n) {
-    return "\u20B9" + n.toLocaleString("en-IN");
-  }
+  function formatINR(n) { return "\u20B9" + n.toLocaleString("en-IN"); }
 
   function getEstimate() {
+    if (!serviceSelect || !propertySelect) return null;
     var base = SERVICE_BASE[serviceSelect.value];
     var factor = PROPERTY_FACTOR[propertySelect.value];
     if (!base || !factor) return null;
@@ -275,85 +217,75 @@
     return { low: roundTo(mid * 0.9, 50), high: roundTo(mid * 1.2, 50) };
   }
 
-  function estimateText() {
-    var est = getEstimate();
-    return est ? formatINR(est.low) + " - " + formatINR(est.high) : null;
-  }
-
   function updateEstimate() {
-    var text = estimateText();
-    estimateValue.textContent = text || "Select service & property";
+    if (!estimateValue) return;
+    var est = getEstimate();
+    estimateValue.textContent = est ? formatINR(est.low) + " - " + formatINR(est.high) : "Select service & property";
   }
 
-  serviceSelect.addEventListener("change", updateEstimate);
-  propertySelect.addEventListener("change", updateEstimate);
+  if (serviceSelect) serviceSelect.addEventListener("change", updateEstimate);
+  if (propertySelect) propertySelect.addEventListener("change", updateEstimate);
 
-  function showError(msg) {
-    errorBox.textContent = msg;
-    errorBox.hidden = false;
+  if (phoneInput) {
+    phoneInput.addEventListener("input", function () {
+      phoneInput.value = phoneInput.value.replace(/[^\d+\s-]/g, "");
+    });
   }
 
-  function clearInvalid() {
-    $$(".invalid", form).forEach(function (el) { el.classList.remove("invalid"); });
-    errorBox.hidden = true;
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      $$(".invalid", form).forEach(function (el) { el.classList.remove("invalid"); });
+      if (errorBox) errorBox.hidden = true;
+
+      var name = nameInput ? nameInput.value.trim() : "";
+      var phone = phoneInput ? phoneInput.value.replace(/\D/g, "") : "";
+      var service = serviceSelect ? serviceSelect.value : "";
+      var property = propertySelect ? propertySelect.value : "";
+      var area = areaInput ? areaInput.value.trim() : "";
+
+      var bad = [];
+      if (!name && nameInput) bad.push(nameInput);
+      if (phone.length < 10 && phoneInput) bad.push(phoneInput);
+      if (!service && serviceSelect) bad.push(serviceSelect);
+      if (!property && propertySelect) bad.push(propertySelect);
+
+      if (bad.length > 0) {
+        bad.forEach(function (el) { el.classList.add("invalid"); });
+        if (errorBox) {
+          errorBox.textContent = phone.length > 0 && phone.length < 10
+            ? "Please enter a valid 10-digit mobile number."
+            : "Please fill in all required fields correctly.";
+          errorBox.hidden = false;
+        }
+        bad[0].focus();
+        return;
+      }
+
+      var est = getEstimate();
+      var estText = est ? formatINR(est.low) + " - " + formatINR(est.high) : "";
+      var lines = [
+        "Hello " + BUSINESS_NAME + ",",
+        "I would like to book an inspection / get a quote.",
+        "",
+        "*Name:* " + name,
+        "*Phone:* " + phone,
+        "*Service:* " + service,
+        "*Property:* " + property,
+        "*Locality:* " + (area || "Hebbal, Bengaluru"),
+        estText ? "*Indicative Estimate:* " + estText : "",
+        "",
+        "Please confirm availability. Thank you!"
+      ].filter(Boolean);
+
+      var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(lines.join("\n"));
+      window.open(url, "_blank", "noopener");
+    });
   }
 
-  [nameInput, phoneInput, serviceSelect, propertySelect].forEach(function (el) {
-    el.addEventListener("input", function () { el.classList.remove("invalid"); errorBox.hidden = true; });
-  });
-
-  // Keep phone field numeric
-  phoneInput.addEventListener("input", function () {
-    phoneInput.value = phoneInput.value.replace(/[^\d+\s-]/g, "");
-  });
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    clearInvalid();
-
-    var name = nameInput.value.trim();
-    var phone = phoneInput.value.replace(/\D/g, "");
-    var service = serviceSelect.value;
-    var property = propertySelect.value;
-    var area = areaInput.value.trim();
-
-    var bad = [];
-    if (!name) bad.push(nameInput);
-    if (phone.length < 10) bad.push(phoneInput);
-    if (!service) bad.push(serviceSelect);
-    if (!property) bad.push(propertySelect);
-
-    if (bad.length) {
-      bad.forEach(function (el) { el.classList.add("invalid"); });
-      showError(phone.length > 0 && phone.length < 10 && bad.length === 1
-        ? "Please enter a valid 10-digit phone number."
-        : "Please fill in all required fields.");
-      bad[0].focus();
-      return;
-    }
-
-    var est = estimateText();
-    var lines = [
-      "Hello " + BUSINESS_NAME + ",",
-      "I would like a quote.",
-      "",
-      "*Name:* " + name,
-      "*Phone:* " + phone,
-      "*Service:* " + service,
-      "*Property:* " + property,
-      "*Locality:* " + (area || "Not specified"),
-      est ? "*Indicative estimate:* " + est : "",
-      "",
-      "Please get in touch. Thank you."
-    ].filter(function (l, i, arr) { return !(l === "" && arr[i - 1] === ""); });
-
-    var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(lines.join("\n"));
-    window.open(url, "_blank", "noopener");
-  });
-
-  /* ---------------------------------------------------------
-     Footer year
-     --------------------------------------------------------- */
+  // ---------- Dynamic Footer Copyright Year ----------
   var yearEl = $("#year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
 })();
