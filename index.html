@@ -3,232 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Absolute Pest Control Services | Professional Pest Management</title>
+    <title>Absolute Pest Control Services | Hebbal, Bengaluru</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #0b0f19;
-            --bg-card: #131c2e;
-            --primary: #10b981;
-            --primary-hover: #059669;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: rgba(255, 255, 255, 0.08);
-            --accent-glow: rgba(16, 185, 129, 0.15);
+            --bg-dark: #050811;
+            --card-bg: rgba(18, 26, 43, 0.85);
+            --emerald-glow: #10b981;
+            --emerald-light: #34d399;
+            --text-white: #ffffff;
+            --text-dim: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: var(--bg-deep); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-white); line-height: 1.6; overflow-x: hidden; }
 
-        /* Header */
-        header { position: fixed; top: 0; width: 100%; background: rgba(11, 15, 25, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 1000; padding: 18px 0; }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.35rem; font-weight: 800; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        .logo span { color: var(--primary); }
-        .btn-whatsapp { background: var(--primary); color: #fff; padding: 10px 22px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; box-shadow: 0 4px 20px var(--accent-glow); }
-        .btn-whatsapp:hover { background: var(--primary-hover); transform: translateY(-2px); }
+        header { position: fixed; top: 0; width: 100%; background: rgba(5, 8, 17, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); z-index: 1000; padding: 18px 0; }
+        .nav-wrap { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+        .brand { font-size: 1.4rem; font-weight: 900; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .brand span { color: var(--emerald-glow); text-shadow: 0 0 12px rgba(16, 185, 129, 0.6); }
+        
+        .glow-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+            transition: all 0.3s ease;
+        }
+        .glow-btn:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(16, 185, 129, 0.8); }
 
-        /* Hero Section */
-        .hero { padding: 140px 0 60px; text-align: center; position: relative; }
-        .hero-badge { display: inline-block; background: rgba(16, 185, 129, 0.1); border: 1px solid var(--primary); color: var(--primary); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        .hero h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 16px; background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: var(--text-muted); font-size: 1.15rem; max-width: 620px; margin: 0 auto 30px; }
+        .hero { padding: 160px 20px 60px; text-align: center; max-width: 1000px; margin: 0 auto; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(16, 185, 129, 0.1); border: 1px solid var(--emerald-glow); color: var(--emerald-light); padding: 8px 20px; border-radius: 30px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; margin-bottom: 24px; }
+        .hero h1 { font-size: 3.2rem; font-weight: 900; line-height: 1.15; margin-bottom: 20px; background: linear-gradient(180deg, #FFFFFF 0%, #94A3B8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--text-dim); font-size: 1.15rem; max-width: 680px; margin: 0 auto 32px; }
 
-        /* Slider Section */
-        .slider-section { max-width: 1200px; margin: 0 auto 80px; padding: 0 20px; }
-        .slider-container { position: relative; width: 100%; height: 480px; border-radius: 24px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease-in-out; display: flex; align-items: flex-end; padding: 40px; }
-        .slide.active { opacity: 1; }
-        .slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
-        .slide-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,15,25,0) 20%, rgba(11,15,25,0.9) 100%); z-index: 2; }
-        .slide-content { position: relative; z-index: 3; max-width: 600px; }
-        .slide-content h3 { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
-        .slide-content p { color: #cbd5e1; font-size: 1rem; }
+        .slider-wrap { max-width: 1100px; margin: 0 auto 80px; padding: 0 20px; }
+        .stage { position: relative; height: 450px; border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 25px 50px rgba(0,0,0,0.8); }
+        .slide-item { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; display: flex; align-items: flex-end; padding: 40px; }
+        .slide-item.active { opacity: 1; }
+        .slide-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+        .overlay { position: absolute; inset: 0; background: linear-gradient(0deg, #050811 15%, rgba(5,8,17,0.3) 60%); z-index: 2; }
+        .slide-info { position: relative; z-index: 3; }
+        .slide-info h3 { font-size: 1.8rem; font-weight: 800; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
 
-        /* Slider Controls */
-        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 4; background: rgba(11, 15, 25, 0.7); border: 1px solid var(--border); color: #fff; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
-        .slider-btn:hover { background: var(--primary); }
-        .prev-btn { left: 20px; }
-        .next-btn { right: 20px; }
+        .services-section { max-width: 1280px; margin: 0 auto; padding: 0 20px 100px; }
+        .section-title { font-size: 2.2rem; text-align: center; font-weight: 800; margin-bottom: 40px; }
+        .grid-bento { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+        
+        .bento-card { background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 20px; overflow: hidden; backdrop-filter: blur(15px); transition: all 0.3s ease; }
+        .bento-card:hover { transform: translateY(-8px); border-color: var(--emerald-glow); box-shadow: 0 15px 30px rgba(16, 185, 129, 0.2); }
+        .img-box { height: 210px; overflow: hidden; position: relative; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .bento-card:hover .img-box img { transform: scale(1.08); }
+        .card-content { padding: 24px; }
+        .card-content h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 8px; }
+        .card-content p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 18px; }
+        .card-btn { color: var(--emerald-light); text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
 
-        /* Services Grid */
-        .services { padding: 60px 0 100px; }
-        .section-title { text-align: center; margin-bottom: 50px; }
-        .section-title h2 { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
-        .section-title p { color: var(--text-muted); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; }
-        .card:hover { transform: translateY(-6px); border-color: var(--primary); }
-        .card-img-wrapper { position: relative; height: 180px; overflow: hidden; }
-        .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .card:hover .card-img-wrapper img { transform: scale(1.08); }
-        .card-body { padding: 24px; }
-        .card-body h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
-        .card-body p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 18px; }
-        .card-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; }
-
-        /* Footer */
-        footer { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        footer { border-top: 1px solid var(--glass-border); text-align: center; padding: 40px 20px; color: var(--text-dim); }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="nav-container">
-            <a href="#" class="logo"><i class="fa-solid fa-shield-halved" style="color:var(--primary);"></i> <span>Absolute</span> Pest Control</a>
-            <a href="https://wa.me/919663017155" target="_blank" class="btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Book Inspection</a>
+        <div class="nav-wrap">
+            <a href="#" class="brand"><i class="fa-solid fa-shield-halved" style="color:var(--emerald-glow);"></i> Absolute Pest Control</a>
+            <a href="https://wa.me/919663017155" target="_blank" class="glow-btn"><i class="fa-brands fa-whatsapp"></i> WhatsApp Direct</a>
         </div>
     </header>
 
     <section class="hero">
-        <div class="hero-badge">Hebbal, Bengaluru • Premium Grade</div>
-        <h1>Absolute Pest Eradication Protocols</h1>
-        <p>Scientific, odorless, and eco-friendly pest defense solutions for residential villas and enterprise infrastructure.</p>
+        <div class="hero-badge"><i class="fa-solid fa-location-dot"></i> Hebbal, Bengaluru • Enterprise Grade</div>
+        <h1>Absolute Pest Control Services</h1>
+        <p>State-of-the-art biological and chemical defense systems delivering 100% sterile, odorless protection for luxury properties.</p>
+        <a href="https://wa.me/919663017155" target="_blank" class="glow-btn"><i class="fa-solid fa-calendar-check"></i> Book Instant Inspection</a>
     </section>
 
-    <!-- Interactive Hero Slider -->
-    <div class="slider-section">
-        <div class="slider-container">
-            <div class="slide active">
-                <img src="hero.jpeg" alt="Absolute Pest Defense">
-                <div class="slide-overlay"></div>
-                <div class="slide-content">
-                    <h3>Advanced Pest Elimination</h3>
-                    <p>Certified treatments tailored for residential and commercial spaces across Bengaluru.</p>
-                </div>
+    <!-- Image Slider mapped to your exact uploads -->
+    <div class="slider-wrap">
+        <div class="stage">
+            <div class="slide-item active">
+                <img src="hero.jpeg" alt="Hero Banner">
+                <div class="overlay"></div>
+                <div class="slide-info"><h3>Hebbal's Premier Elite Pest Protection</h3></div>
             </div>
-            <div class="slide">
-                <img src="Termite.jpeg" alt="Termite Management">
-                <div class="slide-overlay"></div>
-                <div class="slide-content">
-                    <h3>Subterranean Termite Barrier</h3>
-                    <p>Long-term soil barrier defense protecting your valuable timber and structural assets.</p>
-                </div>
+            <div class="slide-item">
+                <img src="Terminite.jpeg" alt="Termite Treatment">
+                <div class="overlay"></div>
+                <div class="slide-info"><h3>Advanced Subterranean Termite Barrier Systems</h3></div>
             </div>
-            <div class="slide">
-                <img src="about.jpeg" alt="Professional Equipment">
-                <div class="slide-overlay"></div>
-                <div class="slide-content">
-                    <h3>Multi-Stage Protection Shield</h3>
-                    <p>Precision eradication protocols providing complete peace of mind.</p>
-                </div>
+            <div class="slide-item">
+                <img src="about.jpeg" alt="About Infrastructure">
+                <div class="overlay"></div>
+                <div class="slide-info"><h3>Certified Professional Application Technology</h3></div>
             </div>
-
-            <button class="slider-btn prev-btn" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
-            <button class="slider-btn next-btn" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
     </div>
 
-    <!-- 8 Bento Grid Services -->
-    <section class="services">
-        <div class="section-title">
-            <h2>Our Specialized Defense Protocols</h2>
-            <p>Targeted solutions designed specifically for urban pest challenges</p>
-        </div>
-        <div class="grid">
-            <div class="card">
-                <div class="card-img-wrapper"><img src="cockroach.jpeg" alt="Cockroach Control"></div>
-                <div class="card-body">
+    <!-- Exact 8 Services Mapped to your exact uploaded images -->
+    <section class="services-section">
+        <h2 class="section-title">Specialized Eradication Protocols</h2>
+        <div class="grid-bento">
+            
+            <div class="bento-card">
+                <div class="img-box"><img src="cockroach.jpeg" alt="Cockroach Control"></div>
+                <div class="card-content">
                     <h3>Cockroach Eradication</h3>
-                    <p>Non-toxic gel baiting engineered for complete kitchen colony destruction.</p>
-                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+                    <p>German matrix gel baiting designed to eliminate deep colony nests safely.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-btn">Deploy Service →</a>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-img-wrapper"><img src="Termite.jpeg" alt="Termite Treatment"></div>
-                <div class="card-body">
+            <div class="bento-card">
+                <div class="img-box"><img src="Terminite.jpeg" alt="Termite Treatment"></div>
+                <div class="card-content">
                     <h3>Termite Armor</h3>
-                    <p>Pre and post-construction chemical barriers guarding structural integrity.</p>
-                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+                    <p>Complete pre & post-construction structural wood protection treatment.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-btn">Deploy Service →</a>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-img-wrapper"><img src="BedBug.jpg" alt="Bed Bug Control"></div>
-                <div class="card-body">
+            <div class="bento-card">
+                <div class="img-box"><img src="BedBug.jpg" alt="Bed Bug Control"></div>
+                <div class="card-content">
                     <h3>Bed Bug Shield</h3>
-                    <p>Thorough multi-stage spray and heat treatments for complete sleep peace.</p>
-                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+                    <p>Rigorous chemical and high-temp mattress safety protocols.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-btn">Deploy Service →</a>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-img-wrapper"><img src="Rodent.jpg" alt="Rodent Control"></div>
-                <div class="card-body">
+            <div class="bento-card">
+                <div class="img-box"><img src="Rodent.jpg" alt="Rodent Control"></div>
+                <div class="card-content">
                     <h3>Rodent Control</h3>
-                    <p>Strategic baiting, smart tracking, and entry-point structural sealing.</p>
-                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+                    <p>Advanced baiting arrays and professional facility entry-point sealing.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-btn">Deploy Service →</a>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-img-wrapper"><img src="Musquito.jpeg" alt="Mosquito Control"></div>
-                <div class="card-body">
-                    <h3>Mosquito Shield</h3>
-                    <p>Targeted outdoor thermal fogging and indoor anti-larval treatment.</p>
-                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+            <div class="bento-card">
+                <div class="img-box"><img src="Musquito.jpeg" alt="Mosquito Control"></div>
+                <div class="card-content">
+                    <h3>Mosquito Defense</h3>
+                    <p>Thermal fogging and larvicide treatments neutralizing breeding zones.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-btn">Deploy Service →</a>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-img-wrapper"><img src="Honeybee.jpg" alt="Honeybee Extraction"></div>
-                <div class="card-body">
+            <div class="bento-card">
+                <div class="img-box"><img src="Honeybee.jpg" alt="Honeybee Extraction"></div>
+                <div class="card-content">
                     <h3>Bee Hive Relocation</h3>
-                    <p>Eco-friendly, safe removal and relocation of dangerous bee hives.</p>
-                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+                    <p>Humanely safe, eco-conscious hive extraction from high-rise structures.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-btn">Deploy Service →</a>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-img-wrapper"><img src="Ant.jpg" alt="Ant Management"></div>
-                <div class="card-body">
-                    <h3>Ant Defense</h3>
-                    <p>Barrier treatments stopping black and red ant trails at entry points.</p>
-                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+            <div class="bento-card">
+                <div class="img-box"><img src="Ant.jpg" alt="Ant Management"></div>
+                <div class="card-content">
+                    <h3>Ant Barrier Treatment</h3>
+                    <p>Targeted perimeter spraying breaking active worker trails instantly.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-btn">Deploy Service →</a>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-img-wrapper"><img src="Genarel.jpg" alt="General Disinfestation"></div>
-                <div class="card-body">
+            <div class="bento-card">
+                <div class="img-box"><img src="Genarel.jpg" alt="General Disinfestation"></div>
+                <div class="card-content">
                     <h3>General Disinfestation</h3>
-                    <p>All-round general spray protection covering routine crawling pests.</p>
-                    <a href="https://wa.me/919663017155" target="_blank" class="card-link">Deploy Defense <i class="fa-solid fa-arrow-right"></i></a>
+                    <p>Comprehensive whole-property coverage protecting against crawling pests.</p>
+                    <a href="https://wa.me/919663017155" target="_blank" class="card-btn">Deploy Service →</a>
                 </div>
             </div>
+
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Absolute Pest Control Services • Hebbal, Bengaluru. All Rights Reserved.</p>
+        <p>&copy; 2026 Absolute Pest Control Services • Hebbal, Bengaluru • Direct Support: +91 96630 17155</p>
     </footer>
 
-    <!-- Slider JavaScript -->
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (i === index) slide.classList.add('active');
-            });
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        // Auto-play slider every 4 seconds
-        setInterval(nextSlide, 4000);
+        let idx = 0;
+        const slides = document.querySelectorAll('.slide-item');
+        setInterval(() => {
+            slides[idx].classList.remove('active');
+            idx = (idx + 1) % slides.length;
+            slides[idx].classList.add('active');
+        }, 3500);
     </script>
 </body>
 </html>
