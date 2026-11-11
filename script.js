@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Automated Hero Image Slider
     let idx = 0;
     const slides = document.querySelectorAll('.slide-item');
     
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3500);
     }
 
-    // Interactive WhatsApp Quote Calculator Integration
     const calcBtn = document.getElementById('calcBtn');
     if (calcBtn) {
         calcBtn.addEventListener('click', () => {
