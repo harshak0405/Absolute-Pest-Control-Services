@@ -1,520 +1,359 @@
+/* =========================================================
+   Absolute Pest Control Services - script.js
+   ========================================================= */
 
-/* =========================================
-   ABSOLUTE PEST CONTROL SERVICES
-   JAVASCRIPT
-========================================= */
+(function () {
+  "use strict";
 
-document.addEventListener("DOMContentLoaded", function () {
+  /* ---------------------------------------------------------
+     CONFIG - edit these values easily
+     --------------------------------------------------------- */
+  var WHATSAPP_NUMBER = "919663017155"; // country code + number, no "+" or spaces
+  var BUSINESS_NAME = "Absolute Pest Control Services";
 
-    // BUSINESS WHATSAPP NUMBER
-    const whatsappNumber = "919663017155";
+  // Indicative starting prices in INR (edit to match your real pricing).
+  // Base price per service for a 1 BHK; multiplied by the property factor below.
+  var SERVICE_BASE = {
+    "Cockroach Eradication": 1200,
+    "Termite Armor": 2500,
+    "Bed Bug Shield": 1500,
+    "Rodent Control": 1500,
+    "Mosquito Shield": 1000,
+    "Bee Hive Relocation": 1500,
+    "Ant Defense": 1000,
+    "General Disinfestation": 1800,
+    "Fly Control": 1200
+  };
 
+  var PROPERTY_FACTOR = {
+    "1 BHK": 1,
+    "2 BHK": 1.4,
+    "3 BHK": 1.8,
+    "4+ BHK / Villa": 2.6,
+    "Shop / Office": 1.6,
+    "Restaurant / Warehouse": 2.4
+  };
 
-    // =====================================
-    // 1. MOBILE NAVIGATION
-    // =====================================
+  /* ---------------------------------------------------------
+     Helpers
+     --------------------------------------------------------- */
+  function $(sel, ctx) { return (ctx || document).querySelector(sel); }
+  function $$(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
 
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
-
-    if (menuToggle && navLinks) {
-
-        menuToggle.addEventListener("click", function () {
-
-            const isOpen = navLinks.classList.toggle("open");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
-
-        });
-
-        // Close menu after selecting a link
-
-        navLinks.querySelectorAll("a").forEach(link => {
-
-            link.addEventListener("click", function () {
-
-                navLinks.classList.remove("open");
-                menuToggle.setAttribute("aria-expanded", "false");
-
-            });
-
-        });
-
-        // Close menu when clicking outside
-
-        document.addEventListener("click", function (event) {
-
-            if (
-                !menuToggle.contains(event.target) &&
-                !navLinks.contains(event.target)
-            ) {
-
-                navLinks.classList.remove("open");
-                menuToggle.setAttribute("aria-expanded", "false");
-
-            }
-
-        });
-
-    }
-
-
-    // =====================================
-    // 2. IMAGE FALLBACK SYSTEM
-    // =====================================
-
-    document.querySelectorAll("img[data-fallback]").forEach(image => {
-
-        image.addEventListener("error", function () {
-
-            const fallback = image.dataset.fallback;
-
-            if (fallback && !image.dataset.fallbackUsed) {
-
-                image.dataset.fallbackUsed = "true";
-                image.src = fallback;
-
-            } else {
-
-                image.style.display = "none";
-
-                console.warn(
-                    "Image could not be loaded:",
-                    image.src
-                );
-
-            }
-
-        });
-
+  /* ---------------------------------------------------------
+     Image fallback: tries alternate file names if the first 404s
+     (data-fallback="Termite.jpeg|Termite.jpg")
+     --------------------------------------------------------- */
+  $$("img[data-fallback]").forEach(function (img) {
+    var queue = img.getAttribute("data-fallback").split("|").map(function (s) { return s.trim(); }).filter(Boolean);
+    img.addEventListener("error", function onError() {
+      if (queue.length) {
+        img.src = queue.shift();
+      } else {
+        img.removeEventListener("error", onError);
+      }
     });
+  });
 
+  /* ---------------------------------------------------------
+     Navbar: scroll shadow + mobile menu
+     --------------------------------------------------------- */
+  var navbar = $("#navbar");
+  var menuToggle = $("#menuToggle");
+  var navLinks = $("#navLinks");
 
-    // =====================================
-    // 3. HERO IMAGE AND VIDEO SLIDER
-    // =====================================
+  function onScroll() {
+    navbar.classList.toggle("scrolled", window.scrollY > 8);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 
-    const slides = document.querySelectorAll(".hero-slide");
+  function closeMenu() {
+    navLinks.classList.remove("open");
+    menuToggle.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  }
 
-    const prevButton = document.getElementById("prevSlide");
-    const nextButton = document.getElementById("nextSlide");
+  menuToggle.addEventListener("click", function () {
+    var open = navLinks.classList.toggle("open");
+    menuToggle.classList.toggle("open", open);
+    menuToggle.setAttribute("aria-expanded", String(open));
+  });
+  $$("a", navLinks).forEach(function (a) { a.addEventListener("click", closeMenu); });
+  document.addEventListener("click", function (e) {
+    if (!navbar.contains(e.target)) closeMenu();
+  });
 
-    const dotsContainer = document.getElementById("sliderDots");
-    const slideCounter = document.getElementById("slideCounter");
-
-    let currentSlide = 0;
-    let sliderInterval;
-
-    const totalSlides = slides.length;
-
-
-    // Create slider navigation dots
-
-    if (dotsContainer && totalSlides > 0) {
-
-        slides.forEach((slide, index) => {
-
-            const dot = document.createElement("button");
-
-            dot.className = "slider-dot";
-
-            dot.setAttribute(
-                "aria-label",
-                `Go to slide ${index + 1}`
-            );
-
-            dot.addEventListener("click", function () {
-
-                goToSlide(index);
-
-            });
-
-            dotsContainer.appendChild(dot);
-
-        });
-
-    }
-
-
-    const dots = document.querySelectorAll(".slider-dot");
-
-
-    // Change active slide
-
-    function goToSlide(index) {
-
-        if (!totalSlides) return;
-
-        currentSlide = (index + totalSlides) % totalSlides;
-
-        slides.forEach((slide, slideIndex) => {
-
-            const isActive = slideIndex === currentSlide;
-
-            slide.classList.toggle("active", isActive);
-
-            const video = slide.querySelector("video");
-
-            if (video) {
-
-                if (isActive) {
-
-                    video.muted = true;
-
-                    const playPromise = video.play();
-
-                    if (playPromise !== undefined) {
-
-                        playPromise.catch(() => {
-
-                            console.log(
-                                "Video autoplay is unavailable."
-                            );
-
-                        });
-
-                    }
-
-                } else {
-
-                    video.pause();
-                    video.currentTime = 0;
-
-                }
-
-            }
-
-        });
-
-
-        // Update navigation dots
-
-        dots.forEach((dot, dotIndex) => {
-
-            dot.classList.toggle(
-                "active",
-                dotIndex === currentSlide
-            );
-
-        });
-
-
-        // Update counter
-
-        if (slideCounter) {
-
-            const current = String(currentSlide + 1).padStart(2, "0");
-
-            const total = String(totalSlides).padStart(2, "0");
-
-            slideCounter.textContent = `${current} / ${total}`;
-
+  /* ---------------------------------------------------------
+     Reveal on scroll
+     --------------------------------------------------------- */
+  var revealEls = $$(".reveal");
+  if ("IntersectionObserver" in window) {
+    var revealObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          revealObs.unobserve(entry.target);
         }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { revealObs.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("in"); });
+  }
 
+  /* ---------------------------------------------------------
+     Animated counters
+     --------------------------------------------------------- */
+  var counters = $$("[data-count]");
+  function animateCount(el) {
+    var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+    var duration = 1600;
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target).toLocaleString("en-IN");
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target.toLocaleString("en-IN");
     }
-
-
-    // Previous and next buttons
-
-    if (prevButton) {
-
-        prevButton.addEventListener("click", function () {
-
-            goToSlide(currentSlide - 1);
-
-            restartSlider();
-
-        });
-
-    }
-
-
-    if (nextButton) {
-
-        nextButton.addEventListener("click", function () {
-
-            goToSlide(currentSlide + 1);
-
-            restartSlider();
-
-        });
-
-    }
-
-
-    // Automatic slideshow
-
-    function startSlider() {
-
-        clearInterval(sliderInterval);
-
-        if (totalSlides > 1) {
-
-            sliderInterval = setInterval(function () {
-
-                goToSlide(currentSlide + 1);
-
-            }, 6500);
-
+    requestAnimationFrame(step);
+  }
+  if ("IntersectionObserver" in window) {
+    var countObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          countObs.unobserve(entry.target);
         }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function (c) { countObs.observe(c); });
+  } else {
+    counters.forEach(function (c) { c.textContent = c.getAttribute("data-count"); });
+  }
 
-    }
+  /* ---------------------------------------------------------
+     Showcase slider (images + videos)
+     --------------------------------------------------------- */
+  var slider = $("#slider");
+  var slides = $$(".slide", slider);
+  var dotsWrap = $("#dots");
+  var current = 0;
+  var timer = null;
+  var IMAGE_DELAY = 4500;
+  var VIDEO_DELAY = 9000;
 
+  slides.forEach(function (_, i) {
+    var dot = document.createElement("button");
+    dot.className = "dot" + (i === 0 ? " active" : "");
+    dot.setAttribute("role", "tab");
+    dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+    dot.addEventListener("click", function () { goTo(i, true); });
+    dotsWrap.appendChild(dot);
+  });
+  var dots = $$(".dot", dotsWrap);
 
-    function restartSlider() {
+  function playVideo(slide) {
+    var v = $("video", slide);
+    if (!v) return;
+    v.muted = true;
+    v.loop = true;
+    v.currentTime = 0;
+    var p = v.play();
+    if (p && typeof p.catch === "function") p.catch(function () { /* autoplay blocked - ignore */ });
+  }
 
-        startSlider();
+  function pauseVideo(slide) {
+    var v = $("video", slide);
+    if (v) v.pause();
+  }
 
-    }
+  function goTo(index, userAction) {
+    pauseVideo(slides[current]);
+    slides[current].classList.remove("active");
+    dots[current].classList.remove("active");
 
+    current = (index + slides.length) % slides.length;
 
-    if (totalSlides > 0) {
+    slides[current].classList.add("active");
+    dots[current].classList.add("active");
+    playVideo(slides[current]);
 
-        goToSlide(0);
+    // Preload neighbouring video for smoother transitions
+    var next = slides[(current + 1) % slides.length];
+    var nv = $("video", next);
+    if (nv && nv.preload !== "auto") nv.preload = "auto";
 
-        startSlider();
+    schedule();
+    if (userAction) { /* timer is restarted by schedule() */ }
+  }
 
-    }
+  function schedule() {
+    clearTimeout(timer);
+    var hasVideo = !!$("video", slides[current]);
+    timer = setTimeout(function () { goTo(current + 1); }, hasVideo ? VIDEO_DELAY : IMAGE_DELAY);
+  }
 
+  $("#prevBtn").addEventListener("click", function () { goTo(current - 1, true); });
+  $("#nextBtn").addEventListener("click", function () { goTo(current + 1, true); });
 
-    // Pause automatic slideshow while user interacts with media
+  slider.addEventListener("mouseenter", function () { clearTimeout(timer); });
+  slider.addEventListener("mouseleave", schedule);
 
-    const heroMedia = document.getElementById("heroMedia");
+  // Keyboard support when slider is focused/hovered area
+  document.addEventListener("keydown", function (e) {
+    var rect = slider.getBoundingClientRect();
+    var inView = rect.top < window.innerHeight && rect.bottom > 0;
+    if (!inView) return;
+    if (e.key === "ArrowLeft") goTo(current - 1, true);
+    if (e.key === "ArrowRight") goTo(current + 1, true);
+  });
 
-    if (heroMedia) {
+  // Touch swipe
+  var touchStartX = 0;
+  slider.addEventListener("touchstart", function (e) { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+  slider.addEventListener("touchend", function (e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 45) goTo(current + (dx < 0 ? 1 : -1), true);
+  }, { passive: true });
 
-        heroMedia.addEventListener("mouseenter", function () {
+  // Pause when tab hidden / slider off-screen
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { clearTimeout(timer); pauseVideo(slides[current]); }
+    else { playVideo(slides[current]); schedule(); }
+  });
 
-            clearInterval(sliderInterval);
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { playVideo(slides[current]); schedule(); }
+        else { clearTimeout(timer); pauseVideo(slides[current]); }
+      });
+    }, { threshold: 0.25 }).observe(slider);
+  } else {
+    schedule();
+  }
 
-        });
+  /* ---------------------------------------------------------
+     Service cards -> preselect service in quote form
+     --------------------------------------------------------- */
+  var form = $("#quoteForm");
+  var serviceSelect = $("#service");
+  var propertySelect = $("#property");
+  var nameInput = $("#name");
+  var phoneInput = $("#phone");
+  var areaInput = $("#area");
+  var estimateValue = $("#estimateValue");
+  var errorBox = $("#formError");
 
-        heroMedia.addEventListener("mouseleave", function () {
-
-            startSlider();
-
-        });
-
-        heroMedia.addEventListener("focusin", function () {
-
-            clearInterval(sliderInterval);
-
-        });
-
-        heroMedia.addEventListener("focusout", function () {
-
-            startSlider();
-
-        });
-
-    }
-
-
-    // =====================================
-    // 4. SERVICE ENQUIRY AUTO-SELECTION
-    // =====================================
-
-    const serviceLinks = document.querySelectorAll(
-        ".service-link[data-service]"
-    );
-
-    const pestSelect = document.getElementById("pestType");
-
-    const serviceMapping = {
-
-        "Cockroach Eradication": "Cockroaches",
-
-        "Termite Armor": "Termites",
-
-        "Bed Bug Shield": "Bed Bugs",
-
-        "Rodent Control": "Rodents",
-
-        "Mosquito Shield": "Mosquitoes",
-
-        "Bee Hive Relocation": "Bee Hive",
-
-        "Ant Defense": "Ants",
-
-        "General Disinfestation": "General Pest Control",
-
-        "Fly Control": "Flies"
-
-    };
-
-
-    serviceLinks.forEach(link => {
-
-        link.addEventListener("click", function () {
-
-            const serviceName = this.dataset.service;
-
-            const matchingOption = serviceMapping[serviceName];
-
-            if (pestSelect && matchingOption) {
-
-                pestSelect.value = matchingOption;
-
-            }
-
-        });
-
+  $$(".card-link").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      serviceSelect.value = btn.getAttribute("data-service");
+      updateEstimate();
+      var quote = $("#quote");
+      quote.scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(function () { nameInput.focus({ preventScroll: true }); }, 600);
     });
+  });
 
+  /* ---------------------------------------------------------
+     Quote calculator
+     --------------------------------------------------------- */
+  function roundTo(n, step) { return Math.round(n / step) * step; }
 
-    // =====================================
-    // 5. WHATSAPP QUOTATION FORM
-    // =====================================
+  function formatINR(n) {
+    return "\u20B9" + n.toLocaleString("en-IN");
+  }
 
-    const quoteForm = document.getElementById("quoteForm");
+  function getEstimate() {
+    var base = SERVICE_BASE[serviceSelect.value];
+    var factor = PROPERTY_FACTOR[propertySelect.value];
+    if (!base || !factor) return null;
+    var mid = base * factor;
+    return { low: roundTo(mid * 0.9, 50), high: roundTo(mid * 1.2, 50) };
+  }
 
-    if (quoteForm) {
+  function estimateText() {
+    var est = getEstimate();
+    return est ? formatINR(est.low) + " - " + formatINR(est.high) : null;
+  }
 
-        quoteForm.addEventListener("submit", function (event) {
+  function updateEstimate() {
+    var text = estimateText();
+    estimateValue.textContent = text || "Select service & property";
+  }
 
-            event.preventDefault();
+  serviceSelect.addEventListener("change", updateEstimate);
+  propertySelect.addEventListener("change", updateEstimate);
 
-            // Collect customer details
+  function showError(msg) {
+    errorBox.textContent = msg;
+    errorBox.hidden = false;
+  }
 
-            const customerName = document
-                .getElementById("customerName")
-                .value.trim();
+  function clearInvalid() {
+    $$(".invalid", form).forEach(function (el) { el.classList.remove("invalid"); });
+    errorBox.hidden = true;
+  }
 
-            const propertyType = document
-                .getElementById("propertyType")
-                .value;
+  [nameInput, phoneInput, serviceSelect, propertySelect].forEach(function (el) {
+    el.addEventListener("input", function () { el.classList.remove("invalid"); errorBox.hidden = true; });
+  });
 
-            const pestType = document
-                .getElementById("pestType")
-                .value;
+  // Keep phone field numeric
+  phoneInput.addEventListener("input", function () {
+    phoneInput.value = phoneInput.value.replace(/[^\d+\s-]/g, "");
+  });
 
-            const areaSize = document
-                .getElementById("areaSize")
-                .value;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    clearInvalid();
 
-            const location = document
-                .getElementById("location")
-                .value.trim();
+    var name = nameInput.value.trim();
+    var phone = phoneInput.value.replace(/\D/g, "");
+    var service = serviceSelect.value;
+    var property = propertySelect.value;
+    var area = areaInput.value.trim();
 
-            const urgency = document
-                .getElementById("urgency")
-                .value;
+    var bad = [];
+    if (!name) bad.push(nameInput);
+    if (phone.length < 10) bad.push(phoneInput);
+    if (!service) bad.push(serviceSelect);
+    if (!property) bad.push(propertySelect);
 
-            const additionalDetails = document
-                .getElementById("additionalDetails")
-                .value.trim();
-
-
-            // Basic validation
-
-            if (
-                !customerName ||
-                !propertyType ||
-                !pestType ||
-                !location
-            ) {
-
-                alert("Please fill in all required fields.");
-
-                return;
-
-            }
-
-
-            if (areaSize && Number(areaSize) <= 0) {
-
-                alert("Please enter a valid property area.");
-
-                return;
-
-            }
-
-
-            // Create WhatsApp quotation message
-
-            const message =
-
-`Hello Absolute Pest Control Services,
-
-I would like to request a pest control quotation.
-
-CUSTOMER DETAILS
-
-Name: ${customerName}
-
-PROPERTY DETAILS
-
-Property Type: ${propertyType}
-Pest Problem: ${pestType}
-Property Area: ${areaSize ? areaSize + " sq. ft." : "Not specified"}
-Location: ${location}
-
-SERVICE REQUIREMENT
-
-Preferred Service Time: ${urgency}
-
-Additional Details:
-${additionalDetails || "No additional details provided."}
-
-Please contact me with the suitable treatment options and quotation.
-
-Thank you.`;
-
-
-            // Encode message for WhatsApp
-
-            const encodedMessage = encodeURIComponent(message);
-
-            const whatsappURL =
-                `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-
-            // Open WhatsApp
-
-            window.open(
-                whatsappURL,
-                "_blank",
-                "noopener,noreferrer"
-            );
-
-        });
-
+    if (bad.length) {
+      bad.forEach(function (el) { el.classList.add("invalid"); });
+      showError(phone.length > 0 && phone.length < 10 && bad.length === 1
+        ? "Please enter a valid 10-digit phone number."
+        : "Please fill in all required fields.");
+      bad[0].focus();
+      return;
     }
 
+    var est = estimateText();
+    var lines = [
+      "Hello " + BUSINESS_NAME + ",",
+      "I would like a quote.",
+      "",
+      "*Name:* " + name,
+      "*Phone:* " + phone,
+      "*Service:* " + service,
+      "*Property:* " + property,
+      "*Locality:* " + (area || "Not specified"),
+      est ? "*Indicative estimate:* " + est : "",
+      "",
+      "Please get in touch. Thank you."
+    ].filter(function (l, i, arr) { return !(l === "" && arr[i - 1] === ""); });
 
-    // =====================================
-    // 6. DYNAMIC COPYRIGHT YEAR
-    // =====================================
+    var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(lines.join("\n"));
+    window.open(url, "_blank", "noopener");
+  });
 
-    const currentYear = document.getElementById("currentYear");
-
-    if (currentYear) {
-
-        currentYear.textContent = new Date().getFullYear();
-
-    }
-
-
-    // =====================================
-    // 7. WHATSAPP LINK CONFIGURATION
-    // =====================================
-
-    document.querySelectorAll(".whatsapp-link").forEach(link => {
-
-        link.href = `https://wa.me/${whatsappNumber}`;
-
-        link.target = "_blank";
-
-        link.rel = "noopener noreferrer";
-
-    });
-
-
-    console.log(
-        "Absolute Pest Control Services website loaded successfully."
-    );
-
-});
+  /* ---------------------------------------------------------
+     Footer year
+     --------------------------------------------------------- */
+  var yearEl = $("#year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+})();
